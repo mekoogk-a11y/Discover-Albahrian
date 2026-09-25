@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="redGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#DA1833" />
+      <stop offset="100%" stop-color="#A60D22" />
+    </linearGradient>
+  </defs>
+  <!-- Background with subtle rounded corners -->
+  <rect width="512" height="512" rx="96" fill="#FFFFFF" />
+  <rect x="12" y="12" width="488" height="488" rx="88" fill="none" stroke="#E2E8F0" stroke-width="4" />
+  
+  <!-- Bahrain Flag Motif (5 serrated triangles representing the five pillars) -->
+  <g transform="translate(48, 56) scale(0.81)">
+    <!-- Red Field -->
+    <rect x="0" y="0" width="512" height="400" rx="24" fill="url(#redGrad)" />
+    <!-- White Field with 5 serrated points on the right edge -->
+    <path d="M 0 0 L 160 0 L 220 40 L 160 80 L 220 120 L 160 160 L 220 200 L 160 240 L 220 280 L 160 320 L 220 360 L 160 400 L 0 400 Z" fill="#FFFFFF" />
+  </g>
+  
+  <!-- Center Emblem: Stylized Pearl & Ancient Dhow Wave Motif -->
+  <circle cx="256" cy="390" r="28" fill="#FFFFFF" stroke="#DA1833" stroke-width="6" />
+  <circle cx="256" cy="390" r="14" fill="#DA1833" />
+</svg>

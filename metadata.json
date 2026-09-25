@@ -1,0 +1,6 @@
+{
+  "name": "اكتشف البحرين | Discover Bahrain",
+  "description": "منصة ثقافية وسياحية تفاعلية لاستكشاف تاريخ مملكة البحرين ومدنها ومعالمها ومتاحفها وتراثها الأصيل.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

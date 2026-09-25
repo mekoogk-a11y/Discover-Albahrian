@@ -1,0 +1,29 @@
+{
+  "id": "/",
+  "name": "اكتشف البحرين | Discover Bahrain",
+  "short_name": "اكتشف البحرين",
+  "description": "منصة ثقافية وسياحية تفاعلية لاستكشاف تاريخ مملكة البحرين ومدنها ومعالمها ومتاحفها وتراثها الأصيل.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "theme_color": "#C8102E",
+  "background_color": "#FFFFFF",
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "192x192 512x512",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon.svg",
+      "sizes": "192x192 512x512",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
+    }
+  ],
+  "categories": ["travel", "education", "culture"],
+  "lang": "ar",
+  "dir": "rtl"
+}

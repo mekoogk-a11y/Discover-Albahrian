@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+    <title>اكتشف البحرين | Discover Bahrain</title>
+    <meta name="description" content="منصة ثقافية وسياحية تفاعلية لاستكشاف تاريخ مملكة البحرين ومدنها ومعالمها ومتاحفها وتراثها الأصيل." />
+    
+    <!-- OpenGraph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="اكتشف البحرين" />
+    <meta property="og:title" content="اكتشف البحرين | Discover Bahrain" />
+    <meta property="og:description" content="البحرين كما لم تعرفها من قبل. رحلة تفاعلية عبر تاريخ دلمون، معالم المنامة والمحرق، ومتاحف وتراث المملكة." />
+    <meta property="og:image" content="/icon.svg" />
+    
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="اكتشف البحرين | Discover Bahrain" />
+    <meta name="twitter:description" content="البحرين كما لم تعرفها من قبل. رحلة تفاعلية عبر تاريخ دلمون، معالم المنامة والمحرق، ومتاحف وتراث المملكة." />
+    <meta name="twitter:image" content="/icon.svg" />
+
+    <!-- PWA & Mobile Web App -->
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#C8102E" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="اكتشف البحرين" />
+    <link rel="icon" type="image/svg+xml" href="/icon.svg" />
+    <link rel="apple-touch-icon" href="/icon.svg" />
+
+    <!-- Google Fonts: Alexandria & Tajawal & Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet" />
+
+    <!-- Leaflet CSS for interactive maps -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+
+    <!-- Schema.org Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "اكتشف البحرين | Discover Bahrain",
+      "applicationCategory": "TravelAndCultureApplication",
+      "operatingSystem": "All",
+      "description": "منصة ثقافية وسياحية تفاعلية لاستكشاف تاريخ مملكة البحرين ومدنها ومعالمها ومتاحفها وتراثها الأصيل.",
+      "inLanguage": ["ar", "en"],
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "BHD"
+      },
+      "creator": {
+        "@type": "Person",
+        "name": "كمال جعفر زكريا"
+      }
+    }
+    </script>
+  </head>
+  <body class="bg-[#FBF9F7] text-[#1F1A1B] antialiased selection:bg-[#C8102E] selection:text-white font-sans">
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js').catch(() => {});
+        });
+      }
+    </script>
+  </body>
+</html>
+

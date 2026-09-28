@@ -4,7 +4,9 @@ import {
   MUSEUMS_DATA,
   TIMELINE_DATA,
   HERITAGE_DATA,
-  DAILY_DISCOVERY_DATA
+  DAILY_DISCOVERY_DATA,
+  HOSPITALITY_DATA,
+  TRAVEL_GUIDE_FAQS
 } from '../data/bahrainData';
 import {
   City,
@@ -14,7 +16,10 @@ import {
   HeritageTopic,
   DailyDiscovery,
   FavoriteItem,
-  ContentStatus
+  ContentStatus,
+  HospitalityItem,
+  HospitalityCategory,
+  TravelGuideFAQ
 } from '../types';
 
 const STORAGE_KEY_FAVORITES = 'discover_bahrain_favorites_v1';
@@ -28,6 +33,8 @@ class DataService {
   private timeline: TimelineEvent[] = [...TIMELINE_DATA];
   private heritage: HeritageTopic[] = [...HERITAGE_DATA];
   private dailyDiscovery: DailyDiscovery = { ...DAILY_DISCOVERY_DATA };
+  private hospitality: HospitalityItem[] = [...HOSPITALITY_DATA];
+  private faqs: TravelGuideFAQ[] = [...TRAVEL_GUIDE_FAQS];
 
   constructor() {
     this.loadPersistedAdminOverrides();
@@ -99,6 +106,41 @@ class DataService {
 
   public getDailyDiscovery(): DailyDiscovery {
     return this.dailyDiscovery;
+  }
+
+  // Hospitality & Travel categories
+  public getHospitalityItems(type?: HospitalityCategory): HospitalityItem[] {
+    if (!type) return this.hospitality;
+    return this.hospitality.filter((item) => item.type === type);
+  }
+
+  public getHotels(): HospitalityItem[] {
+    return this.getHospitalityItems('hotel');
+  }
+
+  public getRestaurants(): HospitalityItem[] {
+    return this.getHospitalityItems('restaurant');
+  }
+
+  public getSouqs(): HospitalityItem[] {
+    return this.getHospitalityItems('souq');
+  }
+
+  public getBeaches(): HospitalityItem[] {
+    return this.getHospitalityItems('beach');
+  }
+
+  public getActivities(): HospitalityItem[] {
+    return this.getHospitalityItems('activity');
+  }
+
+  public getHospitalityItemById(id: string): HospitalityItem | undefined {
+    return this.hospitality.find((item) => item.id === id);
+  }
+
+  public getTravelGuideFAQs(category?: string): TravelGuideFAQ[] {
+    if (!category || category === 'all') return this.faqs;
+    return this.faqs.filter((faq) => faq.category === category);
   }
 
   // --- Admin Updates ---
@@ -185,7 +227,21 @@ class DataService {
   // --- Global Unified Search ---
   public search(query: string, lang: 'ar' | 'en' = 'ar') {
     const q = query.trim().toLowerCase();
-    if (!q) return { cities: [], landmarks: [], museums: [], heritage: [], timeline: [] };
+    if (!q) {
+      return {
+        cities: [],
+        landmarks: [],
+        museums: [],
+        hotels: [],
+        restaurants: [],
+        souqs: [],
+        beaches: [],
+        activities: [],
+        heritage: [],
+        timeline: [],
+        faqs: []
+      };
+    }
 
     const matchesCity = (c: City) =>
       c.nameAr.toLowerCase().includes(q) ||
@@ -208,6 +264,15 @@ class DataService {
       m.descriptionAr.toLowerCase().includes(q) ||
       m.cityNameAr.toLowerCase().includes(q);
 
+    const matchesHospitality = (item: HospitalityItem, targetType: HospitalityCategory) =>
+      item.type === targetType &&
+      (item.nameAr.toLowerCase().includes(q) ||
+        item.nameEn.toLowerCase().includes(q) ||
+        item.descriptionAr.toLowerCase().includes(q) ||
+        item.cityNameAr.toLowerCase().includes(q) ||
+        item.categoryLabelAr.toLowerCase().includes(q) ||
+        item.featuresAr.some((f) => f.toLowerCase().includes(q)));
+
     const matchesHeritage = (h: HeritageTopic) =>
       h.titleAr.toLowerCase().includes(q) ||
       h.titleEn.toLowerCase().includes(q) ||
@@ -220,12 +285,24 @@ class DataService {
       t.eraAr.toLowerCase().includes(q) ||
       t.descriptionAr.toLowerCase().includes(q);
 
+    const matchesFAQ = (faq: TravelGuideFAQ) =>
+      faq.questionAr.toLowerCase().includes(q) ||
+      faq.questionEn.toLowerCase().includes(q) ||
+      faq.answerAr.toLowerCase().includes(q) ||
+      faq.answerEn.toLowerCase().includes(q);
+
     return {
       cities: this.getCities().filter(matchesCity),
       landmarks: this.getLandmarks().filter(matchesLandmark),
       museums: this.getMuseums().filter(matchesMuseum),
+      hotels: this.hospitality.filter((item) => matchesHospitality(item, 'hotel')),
+      restaurants: this.hospitality.filter((item) => matchesHospitality(item, 'restaurant')),
+      souqs: this.hospitality.filter((item) => matchesHospitality(item, 'souq')),
+      beaches: this.hospitality.filter((item) => matchesHospitality(item, 'beach')),
+      activities: this.hospitality.filter((item) => matchesHospitality(item, 'activity')),
       heritage: this.getHeritage().filter(matchesHeritage),
-      timeline: this.getTimeline().filter(matchesTimeline)
+      timeline: this.getTimeline().filter(matchesTimeline),
+      faqs: this.faqs.filter(matchesFAQ)
     };
   }
 }

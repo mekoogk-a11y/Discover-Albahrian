@@ -1,5 +1,5 @@
 import React from 'react';
-import { Compass, MapPin, Landmark, Clock, ArrowDown } from 'lucide-react';
+import { Compass, MapPin, Landmark, Clock, ArrowDown, Video, Radio } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import heroImage from '../assets/images/hero_bahrain_skyline_1790335198535.jpg';
 
@@ -11,64 +11,80 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onNavigate }) => {
   const { language, t } = useLanguage();
 
   return (
-    <section id="hero" className="relative min-h-[580px] sm:min-h-[640px] flex items-center justify-center overflow-hidden bg-stone-950">
+    <section id="hero" className="relative min-h-[580px] sm:min-h-[640px] flex items-center justify-center overflow-hidden bg-gradient-to-b from-stone-900 via-stone-800 to-stone-900">
       
-      {/* Background Image with Measured Scrim and subtle crimson tint overlay */}
+      {/* Background Image: Crisp, clear, luminous view of Bahrain skyline without murky fog */}
       <div className="absolute inset-0 z-0">
         <img
           src={heroImage}
           alt="أفق المنامة ومملكة البحرين - Manama Skyline Bahrain"
-          className="w-full h-full object-cover object-center scale-105 transform duration-700 transition-transform"
+          className="w-full h-full object-cover object-center scale-102 transform duration-700 transition-transform"
           referrerPolicy="no-referrer"
         />
-        {/* Bahrain Red subtle wash and high-contrast dark scrim */}
-        <div className="absolute inset-0 bg-gradient-to-t from-stone-950 via-stone-950/60 to-[#C8102E]/25" />
-        <div className="absolute inset-0 bg-radial from-transparent via-stone-950/40 to-stone-950/80" />
+        {/* Soft luminous light filter - warm sunlight & clean clarity with readable contrast */}
+        <div className="absolute inset-0 bg-gradient-to-t from-stone-950/80 via-stone-900/35 to-amber-500/15" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#C8102E]/20 via-transparent to-amber-500/15 mix-blend-overlay" />
       </div>
 
       {/* Hero Content */}
       <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center">
         
         {/* Bahrain Emblem & Flag */}
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white text-xs sm:text-sm font-medium mb-6 shadow-xs animate-fade-in">
+        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/20 backdrop-blur-md border border-white/40 text-white text-xs sm:text-sm font-semibold mb-6 shadow-md animate-fade-in">
           <span className="text-base" aria-hidden="true">🇧🇭</span>
-          <span className="tracking-wide">
-            {language === 'ar' ? 'مملكة البحرين · أرض الخلود' : 'Kingdom of Bahrain · Land of Dilmun'}
+          <span className="tracking-wide text-white drop-shadow-sm">
+            {language === 'ar' ? 'مملكة البحرين · أرض الخلود والإشراق' : 'Kingdom of Bahrain · Land of Dilmun & Light'}
           </span>
         </div>
 
         {/* Title */}
-        <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold font-display tracking-tight text-white leading-tight drop-shadow-sm max-w-4xl mx-auto text-balance">
+        <h1 className="text-4xl sm:text-5xl md:text-6xl font-black font-display tracking-tight text-white leading-tight drop-shadow-[0_2px_12px_rgba(0,0,0,0.5)] max-w-4xl mx-auto text-balance">
           {t('appTitle')}
         </h1>
 
         {/* Subtitle */}
-        <p className="mt-4 text-xl sm:text-2xl md:text-3xl font-medium text-stone-200 font-display drop-shadow-xs">
+        <p className="mt-4 text-xl sm:text-2xl md:text-3xl font-bold text-amber-200 font-display drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)]">
           «{t('appSubtitle')}»
         </p>
 
         {/* Narrative Deck */}
-        <p className="mt-4 text-sm sm:text-base text-stone-300 max-w-2xl mx-auto leading-relaxed drop-shadow-xs">
+        <p className="mt-4 text-sm sm:text-base text-stone-100 max-w-2xl mx-auto leading-relaxed font-medium drop-shadow-[0_1px_4px_rgba(0,0,0,0.7)]">
           {language === 'ar'
             ? 'رحلة معرفية تفاعلية عبر 5,000 عام من الحضارة: من مدافن دلمون الأسطورية وقلاع التراث العالمي إلى عمارة اللؤلؤ ونهضة العاصمة المشرقة.'
             : 'An interactive cultural odyssey through 5,000 years of civilization: from mythical Dilmun sanctuaries to UNESCO pearling paths and modern coastal marvels.'}
         </p>
 
-        {/* 4 Core Primary Action Buttons as requested */}
+        {/* Primary Action Buttons + Sudanese Ad Voice Studio + Video */}
         <div className="mt-9 flex flex-wrap items-center justify-center gap-3 sm:gap-4">
           <button
-            onClick={() => onNavigate('landmarks')}
-            className="flex items-center gap-2 px-6 py-3.5 rounded-xl font-bold text-sm sm:text-base text-white bg-[#C8102E] hover:bg-[#A50D25] shadow-lg hover:shadow-xl hover:shadow-[#C8102E]/20 transition-all duration-200 transform hover:-translate-y-0.5 active:translate-y-0"
+            onClick={() => onNavigate('sudanese-ad-studio')}
+            className="flex items-center gap-2 px-6 py-3.5 rounded-xl font-bold text-sm sm:text-base text-white bg-gradient-to-r from-amber-600 via-rose-600 to-[#C8102E] hover:from-amber-500 hover:to-[#A50D25] shadow-xl hover:shadow-2xl hover:shadow-red-600/30 transition-all duration-200 transform hover:-translate-y-0.5 active:translate-y-0 ring-2 ring-amber-300/40"
           >
-            <Compass className="w-4 h-4 sm:w-5 sm:h-5" />
+            <Radio className="w-4 h-4 sm:w-5 sm:h-5 text-amber-200 animate-pulse" />
+            <span>{language === 'ar' ? '🎙️ صوت إعلاني حماسي (سوداني)' : '🎙️ Sudanese Ad Voice'}</span>
+          </button>
+
+          <button
+            onClick={() => onNavigate('video-tour')}
+            className="flex items-center gap-2 px-5 py-3.5 rounded-xl font-bold text-sm sm:text-base text-white bg-gradient-to-r from-[#C8102E] to-[#99001A] hover:from-[#A50D25] hover:to-[#800015] shadow-lg hover:shadow-xl hover:shadow-[#C8102E]/30 transition-all duration-200 transform hover:-translate-y-0.5 active:translate-y-0 ring-2 ring-white/20"
+          >
+            <Video className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
+            <span>{language === 'ar' ? 'فيديو مدن البحرين' : 'Bahrain Video'}</span>
+          </button>
+
+          <button
+            onClick={() => onNavigate('landmarks')}
+            className="flex items-center gap-2 px-5 py-3.5 rounded-xl font-semibold text-sm sm:text-base text-stone-900 bg-white hover:bg-stone-100 shadow-md transition-all duration-200 transform hover:-translate-y-0.5 active:translate-y-0"
+          >
+            <Compass className="w-4 h-4 sm:w-5 sm:h-5 text-[#C8102E]" />
             <span>{t('exploreNow')}</span>
           </button>
 
           <button
             onClick={() => onNavigate('map')}
-            className="flex items-center gap-2 px-5 py-3.5 rounded-xl font-semibold text-sm sm:text-base text-stone-900 bg-white hover:bg-stone-100 shadow-md transition-all duration-200 transform hover:-translate-y-0.5 active:translate-y-0"
+            className="flex items-center gap-2 px-5 py-3.5 rounded-xl font-semibold text-sm sm:text-base text-white bg-white/15 hover:bg-white/25 backdrop-blur-md border border-white/25 transition-all duration-200"
           >
-            <MapPin className="w-4 h-4 sm:w-5 sm:h-5 text-[#C8102E]" />
+            <MapPin className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
             <span>{t('map')}</span>
           </button>
 
@@ -77,7 +93,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onNavigate }) => {
             className="flex items-center gap-2 px-5 py-3.5 rounded-xl font-semibold text-sm sm:text-base text-white bg-white/15 hover:bg-white/25 backdrop-blur-md border border-white/25 transition-all duration-200"
           >
             <Landmark className="w-4 h-4 sm:w-5 sm:h-5" />
-            <span>{t('landmarks')}</span>
+            <span>{t('cities')}</span>
           </button>
 
           <button

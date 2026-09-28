@@ -140,7 +140,49 @@ export interface DailyDiscovery {
   relatedLandmarkId?: string;
 }
 
-export type ItemType = 'city' | 'landmark' | 'museum' | 'heritage' | 'story';
+export type HospitalityCategory = 'hotel' | 'restaurant' | 'souq' | 'beach' | 'activity';
+
+export interface HospitalityItem {
+  id: string;
+  type: HospitalityCategory;
+  nameAr: string;
+  nameEn: string;
+  cityNameAr: string;
+  cityNameEn: string;
+  categoryLabelAr: string;
+  categoryLabelEn: string;
+  descriptionAr: string;
+  descriptionEn: string;
+  featuresAr: string[];
+  featuresEn: string[];
+  image: string;
+  rating: number; // e.g. 4.8
+  locationAr: string;
+  locationEn: string;
+  officialUrl?: string;
+  source: SourceReference;
+}
+
+export interface TravelGuideFAQ {
+  id: string;
+  questionAr: string;
+  questionEn: string;
+  answerAr: string;
+  answerEn: string;
+  category: 'general' | 'family' | 'beaches' | 'culture' | 'budget';
+}
+
+export type ItemType =
+  | 'city'
+  | 'landmark'
+  | 'museum'
+  | 'heritage'
+  | 'story'
+  | 'hotel'
+  | 'restaurant'
+  | 'souq'
+  | 'beach'
+  | 'activity';
 
 export interface FavoriteItem {
   id: string;

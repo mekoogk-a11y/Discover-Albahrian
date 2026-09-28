@@ -6,7 +6,9 @@ import { Landmark, City, Museum, FavoriteItem, DailyDiscovery } from './types';
 // Components
 import { Header } from './components/Header';
 import { HeroSection } from './components/HeroSection';
+import { SudaneseCommercialAudioSection } from './components/SudaneseCommercialAudioSection';
 import { DailyDiscoverySection } from './components/DailyDiscoverySection';
+import { BahrainVideoFeature } from './components/BahrainVideoFeature';
 import { LandmarksSection } from './components/LandmarksSection';
 import { CitiesSection } from './components/CitiesSection';
 import { TimelineSection } from './components/TimelineSection';
@@ -213,7 +215,10 @@ function AppContent() {
         {/* 2. Hero Section */}
         <HeroSection onNavigate={handleNavigate} />
 
-        {/* 3. Daily Discovery (اكتشاف اليوم) */}
+        {/* 3. Sudanese Commercial Male Voice Studio (صوت إعلاني حماسي بالعامية السودانية) */}
+        <SudaneseCommercialAudioSection />
+
+        {/* 4. Daily Discovery (اكتشاف اليوم) */}
         <DailyDiscoverySection
           discovery={dailyDiscovery}
           onOpenLandmark={(landmarkId) => {
@@ -225,7 +230,19 @@ function AppContent() {
           onToggleFavorite={toggleDailyFavorite}
         />
 
-        {/* 4. Landmarks Section (معالم تستحق الاكتشاف) */}
+        {/* 5. Bahrain Cities Video Feature (فيديو استكشاف مدن البحرين بصوت رجالي نقي بدون موسيقى وبدون صور نساء) */}
+        <BahrainVideoFeature
+          onSelectCityByName={(name) => {
+            const found = cities.find(
+              (c) => c.nameAr.includes(name) || name.includes(c.nameAr)
+            );
+            if (found) {
+              setSelectedDetail({ type: 'city', data: found });
+            }
+          }}
+        />
+
+        {/* 5. Landmarks Section (معالم تستحق الاكتشاف) */}
         <LandmarksSection
           landmarks={landmarks}
           onSelectLandmark={(l) => setSelectedDetail({ type: 'landmark', data: l })}

@@ -1,0 +1,7 @@
+# robots.txt for Discover Bahrain (https://discover-albahrian.vercel.app/)
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://discover-albahrian.vercel.app/sitemap.xml
+Host: https://discover-albahrian.vercel.app

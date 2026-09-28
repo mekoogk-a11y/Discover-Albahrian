@@ -1,4 +1,13 @@
-import { City, Landmark, Museum, TimelineEvent, HeritageTopic, DailyDiscovery } from '../types';
+import {
+  City,
+  Landmark,
+  Museum,
+  TimelineEvent,
+  HeritageTopic,
+  DailyDiscovery,
+  HospitalityItem,
+  TravelGuideFAQ
+} from '../types';
 
 // Verified Generated Local Assets
 import heroSkyline from '../assets/images/hero_bahrain_skyline_1790335198535.jpg';
@@ -6,6 +15,11 @@ import qalatImg from '../assets/images/qalat_al_bahrain_1790335210429.jpg';
 import pearlingImg from '../assets/images/bahrain_pearling_path_1790335221174.jpg';
 import museumImg from '../assets/images/bahrain_national_museum_1790335231679.jpg';
 import babImg from '../assets/images/bab_al_bahrain_manama_1790335242154.jpg';
+
+import riffaSceneImg from '../assets/images/video_riffa_fort_1790348564897.jpg';
+import sitraSceneImg from '../assets/images/video_sitra_coast_1790348575436.jpg';
+import aaliSceneImg from '../assets/images/video_aali_mounds_1790348586307.jpg';
+import zallaqSceneImg from '../assets/images/video_zallaq_beach_1790348598192.jpg';
 
 export const CITIES_DATA: City[] = [
   {
@@ -60,7 +74,7 @@ export const CITIES_DATA: City[] = [
     nameEn: 'Riffa',
     governorateAr: 'المحافظة الجنوبية',
     governorateEn: 'Southern Governorate',
-    image: qalatImg,
+    image: riffaSceneImg,
     descriptionAr: 'مدينة القلاع العريقة والقصور التاريخية، تنقسم إلى الرفاع الشرقي والرفاع الغربي، وتحتضن قلعة الشيخ سلمان بن أحمد الفاتح المشرفة على وادي الحنينية الشهير.',
     descriptionEn: 'A city of timeless fortresses and sovereign residences, divided into East and West Riffa, perched over the famed historic Hunainiya Valley.',
     historyAr: 'اتخذها حكام البحرين الأوائل مقراً للحكم في القرنين الثامن عشر والتاسع عشر لموقعها الاستراتيجي المرتفع وهوائها العليل وعيون مائها العذبة كعين الحنينية.',
@@ -83,7 +97,7 @@ export const CITIES_DATA: City[] = [
     nameEn: 'Aali',
     governorateAr: 'المحافظة الشمالية',
     governorateEn: 'Northern Governorate',
-    image: qalatImg,
+    image: aaliSceneImg,
     descriptionAr: 'حاضرة أقدم مدافن تلية ملكية في العالم (تلال مدافن دلمون لليونسكو) وعاصمة صناعة الفخار اليدوي المتوارث منذ أكثر من أربعة آلاف عام.',
     descriptionEn: 'Home to Dilmun’s royal burial mounds (UNESCO) and the ancient capital of authentic handmade pottery passed down over four millennia.',
     historyAr: 'تضم عالي تلال مدافن ملكية ضخمة ترجع لعصر دلمون البرونزي، استمرت فيها عائلات الفخارين في استخدام أفران تقليدية متوارثة عبر الأجيال.',
@@ -101,12 +115,35 @@ export const CITIES_DATA: City[] = [
     status: 'published'
   },
   {
+    id: 'sitra',
+    nameAr: 'سترة',
+    nameEn: 'Sitra',
+    governorateAr: 'محافظة العاصمة / الجنوبية',
+    governorateEn: 'Capital / Southern Coast',
+    image: sitraSceneImg,
+    descriptionAr: 'جزيرة العيون العذبة والتراث البحري، تشتهر بمرافئ قوارب الصيد والبوانيش وسواحلها الهادئة المطلة على مياه الخليج العربي الصافية.',
+    descriptionEn: 'An island of natural springs and maritime lore, renowned for traditional dhow fishing harbors and peaceful coastal gulf shorelines.',
+    historyAr: 'كانت محطة هامة لتجمع صيادي اللؤلؤ والأسماك عبر القرون، وتشتهر بعيون الماء التاريخية كعين رحى وعين كبكب وبساتين النخيل الساحلية.',
+    historyEn: 'A key historic staging harbor for pearl divers and fishers throughout centuries, famous for natural springs and coastal date groves.',
+    coordinates: [26.1520, 50.6200],
+    landmarksCount: 3,
+    museumsCount: 1,
+    heritageCount: 4,
+    source: {
+      nameAr: 'هيئة البحرين للسياحة والمعارض',
+      nameEn: 'Bahrain Tourism and Exhibitions Authority',
+      url: 'https://btea.bh',
+      verifiedOrganization: 'BTEA'
+    },
+    status: 'published'
+  },
+  {
     id: 'zallaq',
     nameAr: 'الزلاق',
     nameEn: 'Zallaq',
     governorateAr: 'المحافظة الجنوبية',
     governorateEn: 'Southern Governorate',
-    image: heroSkyline,
+    image: zallaqSceneImg,
     descriptionAr: 'بلدة الساحل الغربي الهادئة المشهورة بشواطئها الذهبية المفتوحة وقربها من محمية العرين الطبيعية وصحراء الصخير وشجرة الحياة.',
     descriptionEn: 'Tranquil western coastal enclave celebrated for its pristine gulf waters, proximity to Al Areen Wildlife Reserve, and the legendary Tree of Life.',
     historyAr: 'كانت محطة هامة لسفن الغوص وصيادي الأسماك قديماً، وتشهد اليوم تطوراً سياحياً بيئياً راقياً مع الحفاظ على عذوبة بيئتها الطبيعية.',
@@ -692,3 +729,345 @@ export const DAILY_DISCOVERY_DATA: DailyDiscovery = {
   },
   relatedLandmarkId: 'pearling-path'
 };
+
+export const HOSPITALITY_DATA = [
+  // --- الفنادق والإقامة ---
+  {
+    id: 'four-seasons-bahrain-bay',
+    type: 'hotel' as const,
+    nameAr: 'فندق فورسيزونز خليج البحرين',
+    nameEn: 'Four Seasons Hotel Bahrain Bay',
+    cityNameAr: 'المنامة',
+    cityNameEn: 'Manama',
+    categoryLabelAr: 'فنادق ومنتجعات فاخرة',
+    categoryLabelEn: 'Luxury Hotel & Resort',
+    descriptionAr: 'أيقونة معمارية بارزة ترتفع على جزيرتها الخاصة في قلب خليج البحرين، يوفر إطلالات بانورامية خلابة على أفق المنامة ومياه الخليج العربي، مع شاطئ خاص ومرافق سبا عالمية.',
+    descriptionEn: 'A soaring architectural icon situated on its own private island in Bahrain Bay, offering panoramic city skyline views, private white-sand beach, and world-class culinary dining.',
+    featuresAr: ['شاطئ رملي خاص', 'أحواض سباحة إنفينيتي', 'مطاعم الشيف وولفغانغ بوك', 'مركز سبا وعافية'],
+    featuresEn: ['Private White-Sand Beach', 'Infinity Pools', 'Wolfgang Puck Dining', 'World-Class Spa'],
+    image: heroSkyline,
+    rating: 4.9,
+    locationAr: 'جزيرة خليج البحرين، المنامة',
+    locationEn: 'Bahrain Bay Island, Manama',
+    officialUrl: 'https://www.fourseasons.com/bahrain/',
+    source: {
+      nameAr: 'هيئة البحرين للسياحة والمعارض',
+      nameEn: 'Bahrain Tourism and Exhibitions Authority',
+      url: 'https://btea.bh',
+      verifiedOrganization: 'BTEA'
+    }
+  },
+  {
+    id: 'ritz-carlton-bahrain',
+    type: 'hotel' as const,
+    nameAr: 'فندق ذا ريتز-كارلتون البحرين',
+    nameEn: 'The Ritz-Carlton, Bahrain',
+    cityNameAr: 'المنامة (السيف)',
+    cityNameEn: 'Manama (Seef)',
+    categoryLabelAr: 'منتجعات شاطئية راقية',
+    categoryLabelEn: 'Beachfront Luxury Resort',
+    descriptionAr: 'منتجع شاطئي فخم يقع في ضاحية السيف، يضم بحيرة شاطئية خاصة ومارينا يخوت وفيلات فاخرة محاطة بحدائق استوائية خضراء تجمع بين الفخامة والخصوصية المطلقة.',
+    descriptionEn: 'An opulent coastal resort in the Seef district featuring a secluded private lagoon, yacht marina, lavish villas, and tranquil landscaped gardens.',
+    featuresAr: ['بحيرة شاطئية خاصة', 'مارينا لليخوت', '14 مطعماً وردهة عالمية', 'فيلات ملكية خاصة'],
+    featuresEn: ['Private Lagoon & Beach', 'Yacht Marina', '14 Dining Venues', 'Royal Secluded Villas'],
+    image: sitraSceneImg,
+    rating: 4.8,
+    locationAr: 'ضاحية السيف، المنامة',
+    locationEn: 'Seef District, Manama',
+    officialUrl: 'https://www.ritzcarlton.com/en/hotels/middle-east/bahrain',
+    source: {
+      nameAr: 'هيئة البحرين للسياحة والمعارض',
+      nameEn: 'Bahrain Tourism and Exhibitions Authority',
+      url: 'https://btea.bh',
+      verifiedOrganization: 'BTEA'
+    }
+  },
+  {
+    id: 'al-areen-palace-spa',
+    type: 'hotel' as const,
+    nameAr: 'منتجع وسبا قصر العرين',
+    nameEn: 'Al Areen Palace & Spa',
+    cityNameAr: 'الزلاق / الصخير',
+    cityNameEn: 'Zallaq / Sakhir',
+    categoryLabelAr: 'منتجعات وفيلات صحراوية خاصة',
+    categoryLabelEn: 'Desert Villa Resort & Spa',
+    descriptionAr: 'ملاذ صحراوي استثنائي يقدم فيلات خاصة مستقلة مع أحواض سباحة مدفأة وجاكوزي، بالقرب من محمية العرين الطبيعية وحلبة البحرين الدولية وشجرة الحياة.',
+    descriptionEn: 'An exceptional desert sanctuary boasting standalone private villas with temperature-controlled private pools, adjacent to Al Areen Wildlife Park and BIC.',
+    featuresAr: ['فلل خاصة بأحواض سباحة مستقلة', 'أكبر مجمع سبا حراري في الشرق الأوسط', 'قريب من حلبة الفورمولا 1'],
+    featuresEn: ['Private Pool Villas', 'Largest Hydrothermal Spa', 'Proximity to Formula 1 Circuit'],
+    image: zallaqSceneImg,
+    rating: 4.7,
+    locationAr: 'الصخير بالقرب من الزلاق',
+    locationEn: 'Sakhir near Zallaq',
+    officialUrl: 'https://all.accor.com/',
+    source: {
+      nameAr: 'هيئة البحرين للسياحة والمعارض',
+      nameEn: 'BTEA',
+      url: 'https://btea.bh',
+      verifiedOrganization: 'BTEA'
+    }
+  },
+
+  // --- المطاعم والضيافة والمأكولات ---
+  {
+    id: 'haji-cafe-naseef',
+    type: 'restaurant' as const,
+    nameAr: 'مطعم ومقهى نصيف التاريخي (1920)',
+    nameEn: 'Naseef Restaurant & Haji Cafe',
+    cityNameAr: 'المنامة',
+    cityNameEn: 'Manama',
+    categoryLabelAr: 'مطاعم المطبخ البحريني الأصيل',
+    categoryLabelEn: 'Authentic Bahraini Heritage Dining',
+    descriptionAr: 'أقدم وأعرق محطات الطعام الشعبي في سوق المنامة، يقدم الفطور البحريني الشهير (البلاليط، الباقلاء، البيض بالطماطم، والخبز الساخن) والآيس كريم البحريني التاريخي بالمانجو والزعفران منذ عام 1920.',
+    descriptionEn: 'Historic cornerstone of traditional Bahraini cuisine in Manama Souq since 1920, renowned for traditional breakfast dishes (Balaleet, Shakshouka) and legendary mango saffron ice cream.',
+    featuresAr: ['فطور بحريني تقليدي أصيل', 'آيس كريم نصيف الشهير منذ 1920', 'أجواء سوق المنامة القديم'],
+    featuresEn: ['Authentic Bahraini Breakfast', 'Historic 1920 Artisanal Ice Cream', 'Atmospheric Old Souq Setting'],
+    image: babImg,
+    rating: 4.8,
+    locationAr: 'سوق باب البحرين، المنامة',
+    locationEn: 'Bab Al Bahrain Souq, Manama',
+    officialUrl: 'https://culture.gov.bh',
+    source: {
+      nameAr: 'هيئة البحرين للثقافة والآثار',
+      nameEn: 'Bahrain Authority for Culture and Antiquities',
+      url: 'https://culture.gov.bh',
+      verifiedOrganization: 'BACA'
+    }
+  },
+  {
+    id: 'villa-mamas',
+    type: 'restaurant' as const,
+    nameAr: 'مطعم فيلا ماماز (Villa Mamas)',
+    nameEn: 'Villa Mamas Restaurant',
+    cityNameAr: 'المرخ / سار',
+    cityNameEn: 'Al Markh / Saar',
+    categoryLabelAr: 'المطبخ الخليجي المعاصر الراقي',
+    categoryLabelEn: 'Contemporary Fine Khaleeji Dining',
+    descriptionAr: 'وجهة طعام عالمية بقيادة الشيف البحرينية الشهيرة رؤيا صالح، تقدم أطباقاً بحرينية وخليجية بلمسات متوسطية عصرية تعتمد على مكونات عضوية ومحلية طازجة.',
+    descriptionEn: 'Celebrated restaurant founded by Bahraini Chef Roaya Saleh, elevating traditional Gulf flavors with contemporary culinary mastery using organic local produce.',
+    featuresAr: ['أطباق بحرينية حديثة مبتكرة', 'مكونات عضوية محلية طازجة', 'جلسات حدائق أنيقة ومريحة'],
+    featuresEn: ['Innovative Khaleeji Recipes', 'Fresh Local Organic Ingredients', 'Charming Courtyard Garden'],
+    image: heroSkyline,
+    rating: 4.9,
+    locationAr: 'قرية المرخ، بالقرب من سار',
+    locationEn: 'Al Markh, Saar Area',
+    officialUrl: 'https://villamamas.com',
+    source: {
+      nameAr: 'هيئة البحرين للسياحة والمعارض',
+      nameEn: 'BTEA',
+      url: 'https://btea.bh',
+      verifiedOrganization: 'BTEA'
+    }
+  },
+
+  // --- الأسواق الشعبية والتسوق ---
+  {
+    id: 'manama-souq',
+    type: 'souq' as const,
+    nameAr: 'سوق المنامة القديم وباب البحرين',
+    nameEn: 'Bab Al Bahrain & Old Manama Souq',
+    cityNameAr: 'المنامة',
+    cityNameEn: 'Manama',
+    categoryLabelAr: 'الأسواق الشعبية والتاريخية',
+    categoryLabelEn: 'Historic Traditional Souq',
+    descriptionAr: 'القلب النابض للتجارة في البحرين منذ قرون؛ يضم أزقة مفعمة بروائح البهارات الخليجية، ومحلات بيع اللؤلؤ الطبيعي، والذهب البحريني عيار 21، والأقمشة والتحف التراثية.',
+    descriptionEn: 'The historic marketplace of Bahrain, featuring atmospheric lanes laden with exotic spices, natural pearls, 21k Bahraini gold, and hand-embroidered textiles.',
+    featuresAr: ['سوق الذهب واللؤلؤ الطبيعي', 'دكاكين التوابل والأعشاب النادرة', 'مقاهي ومطاعم شعبية'],
+    featuresEn: ['Gold & Natural Pearl Bazaars', 'Aromatic Spice Stalls', 'Traditional Teahouses'],
+    image: babImg,
+    rating: 4.8,
+    locationAr: 'خلف باب البحرين، قلب المنامة',
+    locationEn: 'Behind Bab Al Bahrain, Manama',
+    source: {
+      nameAr: 'هيئة البحرين للثقافة والآثار',
+      nameEn: 'BACA',
+      url: 'https://culture.gov.bh',
+      verifiedOrganization: 'BACA'
+    }
+  },
+  {
+    id: 'qaisariya-souq',
+    type: 'souq' as const,
+    nameAr: 'سوق القيصرية التاريخي بالمحرق',
+    nameEn: 'Historic Souq Al Qaisariya',
+    cityNameAr: 'المحرق',
+    cityNameEn: 'Muharraq',
+    categoryLabelAr: 'أسواق التراث العالمي لليونسكو',
+    categoryLabelEn: 'UNESCO World Heritage Souq',
+    descriptionAr: 'أحد أقدم أجزاء سوق المحرق وجزء أساسي من مسار طريق اللؤلؤ المدرج على قائمة اليونسكو؛ شُيد بدكاكين من حجر الفروش والأسقف الخشبية لبيع اللؤلؤ والقهوة والتمور.',
+    descriptionEn: 'One of the oldest surviving markets in Muharraq and an integral component of the UNESCO Pearling Path, built with historic coral stone and mangrove wood roofs.',
+    featuresAr: ['عمارة مرجانية وتراثية مسجلة باليونسكو', 'محلات بيع التمور والحلوى البحرينية', 'دكاكين اللؤلؤ والأنتيك'],
+    featuresEn: ['UNESCO Preserved Coral Architecture', 'Traditional Bahraini Halwa Shops', 'Authentic Pearl Traders'],
+    image: pearlingImg,
+    rating: 4.9,
+    locationAr: 'المحرق، مسار طريق اللؤلؤ',
+    locationEn: 'Muharraq, Pearling Path',
+    source: {
+      nameAr: 'مركز التراث العالمي لليونسكو',
+      nameEn: 'UNESCO World Heritage Centre',
+      url: 'https://pearlingpath.bh',
+      verifiedOrganization: 'UNESCO'
+    }
+  },
+
+  // --- الشواطئ والأماكن البحرية ---
+  {
+    id: 'marassi-beach',
+    type: 'beach' as const,
+    nameAr: 'شاطئ مراسي ديار المحرق',
+    nameEn: 'Marassi Beach',
+    cityNameAr: 'ديار المحرق',
+    cityNameEn: 'Diyar Al Muharraq',
+    categoryLabelAr: 'الشواطئ الرملية الحديثة والرياضات المائية',
+    categoryLabelEn: 'Modern Beach & Watersports',
+    descriptionAr: 'واجهة بحرية عصرية برمال بيضاء ناعمة ومياه فيروزية صافية، توفر مرافق متكاملة ومطاعم شاطئية وأنشطة ترفيهية للأطفال، بالإضافة إلى ركوب الكاياك والزوارق السريعة.',
+    descriptionEn: 'A prime contemporary coastal beachfront with soft white sands and crystal-clear waters, offering vibrant watersports, inflatable waterparks, and beach cafes.',
+    featuresAr: ['رمال بيضاء مجهزة بكراسي ومظلات', 'ألعاب ورياضات مائية للأطفال والكبار', 'مطاعم ومقاهٍ مطلة على البحر'],
+    featuresEn: ['Equipped Sunbeds & Umbrellas', 'Family Watersports & Kayaking', 'Beachfront Promenade Cafes'],
+    image: sitraSceneImg,
+    rating: 4.8,
+    locationAr: 'ديار المحرق، شمال شرق البحرين',
+    locationEn: 'Diyar Al Muharraq',
+    source: {
+      nameAr: 'هيئة البحرين للسياحة والمعارض',
+      nameEn: 'BTEA',
+      url: 'https://btea.bh',
+      verifiedOrganization: 'BTEA'
+    }
+  },
+  {
+    id: 'bilaj-al-jazayer',
+    type: 'beach' as const,
+    nameAr: 'شاطئ بلاج الجزائر (ساحل الزلاق)',
+    nameEn: 'Bilaj Al Jazayer (Zallaq Coast)',
+    cityNameAr: 'الزلاق',
+    cityNameEn: 'Zallaq',
+    categoryLabelAr: 'شواطئ الغروب العامة',
+    categoryLabelEn: 'Sunset Coastal Public Beach',
+    descriptionAr: 'يمتد لأكثر من 3.5 كيلومترات على الساحل الجنوبي الغربي للبحرين، ويعد الوجهة الأولى لعشاق مشاهدة غروب الشمس في الخليج العربي وممارسة المشي والسباحة في مياه هادئة.',
+    descriptionEn: 'A 3.5-kilometer coastline on the southwestern coast of Bahrain, renowned as the top vantage point for spectacular Arabian sunsets and serene coastal walks.',
+    featuresAr: ['ممشى ساحلي واسع مع مسار للدراجات', 'أروع إطلالة لغروب الشمس في البحرين', 'قريب من حلبة الفورمولا 1 والعرين'],
+    featuresEn: ['3.5km Promenade & Bike Trails', 'Best Sunset Views in the Kingdom', 'Close to BIC and Al Areen'],
+    image: zallaqSceneImg,
+    rating: 4.7,
+    locationAr: 'الزلاق، الساحل الغربي',
+    locationEn: 'Zallaq, Western Coast',
+    source: {
+      nameAr: 'هيئة البحرين للسياحة والمعارض',
+      nameEn: 'BTEA',
+      url: 'https://btea.bh',
+      verifiedOrganization: 'BTEA'
+    }
+  },
+
+  // --- الأنشطة والجولات السياحية ---
+  {
+    id: 'pearl-diving-tour',
+    type: 'activity' as const,
+    nameAr: 'رحلات غوص واستخراج اللؤلؤ الطبيعي',
+    nameEn: 'Bahrain Natural Pearl Diving Experience',
+    cityNameAr: 'المحرق / سواحل البحرين',
+    cityNameEn: 'Muharraq / Offshore Reefs',
+    categoryLabelAr: 'تجارب التراث البحري الأصيل',
+    categoryLabelEn: 'Living Heritage Expedition',
+    descriptionAr: 'تجربة فريدة تتيح للمشاركين الإبحار إلى "الهيرات" (المصائد الطبيعية لمزارع المحار في أعماق مياه البحرين) والغوص الحر أو بالأسطوانات لاستخراج المحار والاحتفاظ بجميع اللآلئ التي يتم العثور عليها مجاناً وفق الأنظمة الرسمية!',
+    descriptionEn: 'An authentic maritime adventure allowing visitors to dive in protected historic oyster beds (Hayrat) and keep any natural pearls discovered without limit, under official licensing.',
+    featuresAr: ['الغوص في مواقع التراث البحري الطبيعي', 'الاحتفاظ بجميع اللآلئ المكتشفة مجاناً', 'مرافقة غواصين ونواخذة محترفين'],
+    featuresEn: ['Dive in Pristine Protected Oyster Beds', 'Keep 100% of Natural Pearls Found', 'Accompanied by Licensed Captains'],
+    image: pearlingImg,
+    rating: 5.0,
+    locationAr: 'انطلاق الرحلات من شاطئ مراسي ورأس رية',
+    locationEn: 'Departures from Ras Rayyah and Marassi',
+    source: {
+      nameAr: 'هيئة البحرين للثقافة ومعهد دانات',
+      nameEn: 'BACA & DANAT Institute',
+      url: 'https://pearlingpath.bh',
+      verifiedOrganization: 'BACA'
+    }
+  },
+  {
+    id: 'bic-karting-circuit',
+    type: 'activity' as const,
+    nameAr: 'حلبة البحرين الدولية وسباقات الكارتينج',
+    nameEn: 'Bahrain International Circuit (BIC)',
+    cityNameAr: 'الصخير',
+    cityNameEn: 'Sakhir',
+    categoryLabelAr: 'رياضة السيارات والأنشطة الحماسية',
+    categoryLabelEn: 'Motorsports & Karting Arena',
+    descriptionAr: '"موطن رياضة السيارات في الشرق الأوسط"، حلبة سباقات الجائزة الكبرى للفورمولا 1 التي توفر جولات استكشافية وراء الكواليس ومضمار كارتينج احترافي مفتوح للجمهور على مدار العام.',
+    descriptionEn: 'The Home of Motorsport in the Middle East; host of the annual Formula 1 Gulf Air Bahrain Grand Prix, featuring behind-the-scenes pit tours and world-class karting tracks.',
+    featuresAr: ['مضمار كارتينج عالمي مضاء ليلاً', 'جولات تفقدية لبرج صخير وحلبة الـ F1', 'تجارب قيادة سيارات السباق الاحترافية'],
+    featuresEn: ['Floodlit International Karting Track', 'Sakhir VIP Tower Tour', 'Pro Racing Car Driving Experiences'],
+    image: heroSkyline,
+    rating: 4.9,
+    locationAr: 'صحراء الصخير',
+    locationEn: 'Sakhir Desert',
+    officialUrl: 'https://www.bahraingp.com',
+    source: {
+      nameAr: 'حلبة البحرين الدولية',
+      nameEn: 'BIC Official',
+      url: 'https://www.bahraingp.com',
+      verifiedOrganization: 'BIC'
+    }
+  }
+];
+
+export const TRAVEL_GUIDE_FAQS: TravelGuideFAQ[] = [
+  {
+    id: 'what-to-do',
+    category: 'general',
+    questionAr: 'ماذا تفعل في البحرين خلال زيارتك السياحية؟',
+    questionEn: 'What are the top things to do in Bahrain?',
+    answerAr: 'يمكنك خوض تجربة غوص اللؤلؤ الطبيعي في مياه الخليج والاحتفاظ بما تجده، وزيارة موقع قلعة البحرين لليونسكو ومتحفها البحري، والتجول في مسار طريق اللؤلؤ بالمحرق، والاستمتاع بتذوق الحلوى البحرينية في سوق المنامة القديم، ومشاهدة شجرة الحياة المعمرة في الصخير، وقضاء أوقات شاطئية ممتعة في مراسي وجزر أمواج.',
+    answerEn: 'You can experience natural pearl diving in offshore reefs and keep your found pearls, explore UNESCO sites like Bahrain Fort and the Pearling Path, stroll through historic Manama Souq, witness the 400-year-old Tree of Life, and enjoy pristine beaches at Marassi and Amwaj.'
+  },
+  {
+    id: 'top-attractions',
+    category: 'culture',
+    questionAr: 'ما هي أفضل وأهم الأماكن السياحية في البحرين؟',
+    questionEn: 'What are the most famous tourist attractions in Bahrain?',
+    answerAr: 'أهم المعالم تشمل: 1) قلعة البحرين العريقة المطلة على البحر. 2) مسار طريق اللؤلؤ في المحرق. 3) متحف البحرين الوطني وبيت القرآن. 4) باب البحرين وسوق المنامة العتيق. 5) جامع أحمد الفاتح الكبير. 6) تلال مدافن دلمون في عالي. 7) حلبة البحرين الدولية للفورمولا 1.',
+    answerEn: 'Top attractions include Qal\'at al-Bahrain (Bahrain Fort), the Pearling Path in Muharraq, Bahrain National Museum, Beit Al Quran, Bab Al Bahrain in Manama, Al Fateh Grand Mosque, Dilmun Burial Mounds in Aali, and the Bahrain International Circuit.'
+  },
+  {
+    id: 'manama-highlights',
+    category: 'general',
+    questionAr: 'ما هي أهم المعالم السياحية في العاصمة المنامة؟',
+    questionEn: 'What are the top landmarks to visit in Manama?',
+    answerAr: 'تحتضن المنامة خليطاً ساحراً بين التاريخ والمعاصرة؛ من أبرز معالمها: بوابة باب البحرين وأسواقها، متحف البحرين الوطني، مسرح البحرين الوطني، جامع الفاتح، مرفأ البحرين المالي، مركز البحرين التجاري العالمي، ومجمع الأفنيوز على كورنيش المنامة.',
+    answerEn: 'Manama combines heritage and futuristic architecture: Bab Al Bahrain and historic bazaars, Bahrain National Museum, National Theatre, Al Fateh Mosque, Bahrain Bay, and The Avenues coastal promenade.'
+  },
+  {
+    id: 'family-places',
+    category: 'family',
+    questionAr: 'ما هي أفضل الأماكن المناسبة للعائلات والأطفال في البحرين؟',
+    questionEn: 'What are the best family-friendly places in Bahrain?',
+    answerAr: 'تناسب العائلات شواطئ مراسي وبلاج الجزائر المجهزة بألعاب مائية، حديقة ومحمية العرين للحياة الفطرية لمشاهدة المها والطيور النادرة، منتزه عذاري الترفيهي، مجمع الأفنيوز، ومتحف موقع قلعة البحرين التفاعلي.',
+    answerEn: 'Great family destinations include Marassi Beach with inflatable parks, Al Areen Wildlife Park & Reserve, Adhari Amusement Park, The Avenues waterfront play spaces, and the interactive Bahrain Fort Site Museum.'
+  },
+  {
+    id: 'bahrain-history-summary',
+    category: 'culture',
+    questionAr: 'ما هو تاريخ مملكة البحرين ولماذا سميت بأرض دلمون؟',
+    questionEn: 'What is the history of Bahrain and the Dilmun civilization?',
+    answerAr: 'تمتلك البحرين تاريخاً يتجاوز 5000 عام، حيث كانت تُعرف بحضارة دلمون (أرض الخلود والفردوس في الملاحم السومرية القديمة) بفضل ينابيع المياه العذبة التي تفجرت في برها وبحرها، ثم عرفت بتايلوس في العهد الهيلينستي، وتأسست الدولة الحديثة عام 1783 على يد أحمد الفاتح وصولاً إلى إعلان المملكة الدستورية وازدهارها الحديث.',
+    answerEn: 'Bahrain boasts over 5,000 years of civilization as the core of Bronze Age Dilmun—famed in the Epic of Gilgamesh as the land of sweet springs and immortality—later named Tylos under Hellenistic influence, and unified as a modern sovereign state in 1783.'
+  },
+  {
+    id: 'best-beaches',
+    category: 'beaches',
+    questionAr: 'ما هي أفضل الشواطئ والأماكن البحرية في البحرين؟',
+    questionEn: 'What are the best public and resort beaches in Bahrain?',
+    answerAr: 'يعد شاطئ مراسي في ديار المحرق الأفضل للأنشطة والرياضات المائية، وشاطئ بلاج الجزائر في الزلاق الأمثل لمشاهدة الغروب والاسترخاء، وساحل كرباباد المجاور للقلعة لعشاق التراث وركوب الخيل، بالإضافة إلى شواطئ جزر أمواج ودرة البحرين.',
+    answerEn: 'Marassi Beach in Diyar Al Muharraq is premier for watersports, Bilaj Al Jazayer in Zallaq is ideal for sunset walks, Karbabad Beach is famed for horse riding by ancient ramparts, alongside Amwaj Islands and Durrat Al Bahrain.'
+  },
+  {
+    id: 'traditional-souqs',
+    category: 'culture',
+    questionAr: 'أين تجد أفضل الأسواق الشعبية والحرف التراثية في البحرين؟',
+    questionEn: 'Where can you experience traditional souqs and handicrafts?',
+    answerAr: 'سوق المنامة القديم لشراء البهارات والعطور والذهب البحريني الأصيل، سوق القيصرية بالمحرق لشراء التمور والحلوى والتراثيات، قرية عالي لمشاهدة صناعة الفخار في أفران عمرها 4000 عام، وقرية بني جمرة لمشاهدة حياكة النسيج والبشوت اليدوية.',
+    answerEn: 'Visit Old Manama Souq for spices and 21k gold, Souq Al Qaisariya in Muharraq for Bahraini Halwa, Aali village for 4,000-year-old pottery kiln workshops, and Bani Jamrah for handcrafted woven bishts.'
+  }
+];
+

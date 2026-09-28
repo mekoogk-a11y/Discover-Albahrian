@@ -26,6 +26,8 @@ export const Header: React.FC<HeaderProps> = ({
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const navLinks = [
+    { id: 'sudanese-ad-studio', label: language === 'ar' ? '🎙️ صوت إعلاني' : '🎙️ Voice Ad' },
+    { id: 'video-tour', label: language === 'ar' ? 'فيديو المدن' : 'Cities Video' },
     { id: 'landmarks', label: t('landmarks') },
     { id: 'cities', label: t('cities') },
     { id: 'history', label: t('history') },

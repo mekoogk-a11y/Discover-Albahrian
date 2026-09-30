@@ -97,9 +97,10 @@ export const LandmarksSection: React.FC<LandmarksSectionProps> = ({
                 <div className="relative aspect-16/10 overflow-hidden bg-stone-100">
                   <img
                     src={landmark.image}
-                    alt={name}
+                    alt={language === 'ar' ? `معلم ${landmark.nameAr} في ${landmark.cityNameAr} - مملكة البحرين` : `${landmark.nameEn} landmark in ${landmark.cityNameEn}, Bahrain`}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     loading="lazy"
+                    decoding="async"
                     referrerPolicy="no-referrer"
                   />
                   

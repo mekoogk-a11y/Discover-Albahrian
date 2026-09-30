@@ -5,7 +5,7 @@
   <!-- 1. الرئيسية / Homepage -->
   <url>
     <loc>https://discover-albahrian.vercel.app/</loc>
-    <lastmod>2026-09-28</lastmod>
+    <lastmod>2026-09-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="ar" href="https://discover-albahrian.vercel.app/" />
@@ -16,7 +16,7 @@
   <!-- 2. معالم البحرين / Landmarks -->
   <url>
     <loc>https://discover-albahrian.vercel.app/landmarks</loc>
-    <lastmod>2026-09-28</lastmod>
+    <lastmod>2026-09-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="ar" href="https://discover-albahrian.vercel.app/landmarks" />
@@ -26,7 +26,7 @@
   <!-- 3. مدن ومناطق البحرين / Cities & Regions -->
   <url>
     <loc>https://discover-albahrian.vercel.app/cities</loc>
-    <lastmod>2026-09-28</lastmod>
+    <lastmod>2026-09-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="ar" href="https://discover-albahrian.vercel.app/cities" />
@@ -36,7 +36,7 @@
   <!-- المنامة / Manama City -->
   <url>
     <loc>https://discover-albahrian.vercel.app/cities/manama</loc>
-    <lastmod>2026-09-28</lastmod>
+    <lastmod>2026-09-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
     <xhtml:link rel="alternate" hreflang="ar" href="https://discover-albahrian.vercel.app/cities/manama" />
@@ -46,7 +46,7 @@
   <!-- المحرق / Muharraq City -->
   <url>
     <loc>https://discover-albahrian.vercel.app/cities/muharraq</loc>
-    <lastmod>2026-09-28</lastmod>
+    <lastmod>2026-09-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
     <xhtml:link rel="alternate" hreflang="ar" href="https://discover-albahrian.vercel.app/cities/muharraq" />
@@ -56,7 +56,7 @@
   <!-- الرفاع / Riffa City -->
   <url>
     <loc>https://discover-albahrian.vercel.app/cities/riffa</loc>
-    <lastmod>2026-09-28</lastmod>
+    <lastmod>2026-09-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
     <xhtml:link rel="alternate" hreflang="ar" href="https://discover-albahrian.vercel.app/cities/riffa" />
@@ -66,7 +66,7 @@
   <!-- عالي / Aali City -->
   <url>
     <loc>https://discover-albahrian.vercel.app/cities/aali</loc>
-    <lastmod>2026-09-28</lastmod>
+    <lastmod>2026-09-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="ar" href="https://discover-albahrian.vercel.app/cities/aali" />
@@ -76,7 +76,7 @@
   <!-- سترة / Sitra City -->
   <url>
     <loc>https://discover-albahrian.vercel.app/cities/sitra</loc>
-    <lastmod>2026-09-28</lastmod>
+    <lastmod>2026-09-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="ar" href="https://discover-albahrian.vercel.app/cities/sitra" />
@@ -86,7 +86,7 @@
   <!-- الزلاق / Zallaq City -->
   <url>
     <loc>https://discover-albahrian.vercel.app/cities/zallaq</loc>
-    <lastmod>2026-09-28</lastmod>
+    <lastmod>2026-09-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="ar" href="https://discover-albahrian.vercel.app/cities/zallaq" />
@@ -96,7 +96,7 @@
   <!-- البديع / Budaiya -->
   <url>
     <loc>https://discover-albahrian.vercel.app/cities/budaiya</loc>
-    <lastmod>2026-09-28</lastmod>
+    <lastmod>2026-09-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="ar" href="https://discover-albahrian.vercel.app/cities/budaiya" />
@@ -106,7 +106,7 @@
   <!-- 4. المتاحف / Museums -->
   <url>
     <loc>https://discover-albahrian.vercel.app/museums</loc>
-    <lastmod>2026-09-28</lastmod>
+    <lastmod>2026-09-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
     <xhtml:link rel="alternate" hreflang="ar" href="https://discover-albahrian.vercel.app/museums" />
@@ -116,7 +116,7 @@
   <!-- 5. الشواطئ والأماكن البحرية / Beaches -->
   <url>
     <loc>https://discover-albahrian.vercel.app/beaches</loc>
-    <lastmod>2026-09-28</lastmod>
+    <lastmod>2026-09-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
     <xhtml:link rel="alternate" hreflang="ar" href="https://discover-albahrian.vercel.app/beaches" />
@@ -126,7 +126,7 @@
   <!-- 6. الفنادق والإقامة / Hotels -->
   <url>
     <loc>https://discover-albahrian.vercel.app/hotels</loc>
-    <lastmod>2026-09-28</lastmod>
+    <lastmod>2026-09-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
     <xhtml:link rel="alternate" hreflang="ar" href="https://discover-albahrian.vercel.app/hotels" />
@@ -136,7 +136,7 @@
   <!-- 7. المطاعم والضيافة / Restaurants -->
   <url>
     <loc>https://discover-albahrian.vercel.app/restaurants</loc>
-    <lastmod>2026-09-28</lastmod>
+    <lastmod>2026-09-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
     <xhtml:link rel="alternate" hreflang="ar" href="https://discover-albahrian.vercel.app/restaurants" />
@@ -146,7 +146,7 @@
   <!-- 8. الأسواق الشعبية والتسوق / Souqs -->
   <url>
     <loc>https://discover-albahrian.vercel.app/souqs</loc>
-    <lastmod>2026-09-28</lastmod>
+    <lastmod>2026-09-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
     <xhtml:link rel="alternate" hreflang="ar" href="https://discover-albahrian.vercel.app/souqs" />
@@ -156,7 +156,7 @@
   <!-- 9. التاريخ والحضارة / History -->
   <url>
     <loc>https://discover-albahrian.vercel.app/history</loc>
-    <lastmod>2026-09-28</lastmod>
+    <lastmod>2026-09-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
     <xhtml:link rel="alternate" hreflang="ar" href="https://discover-albahrian.vercel.app/history" />
@@ -166,7 +166,7 @@
   <!-- 10. التراث الأصيل / Heritage -->
   <url>
     <loc>https://discover-albahrian.vercel.app/heritage</loc>
-    <lastmod>2026-09-28</lastmod>
+    <lastmod>2026-09-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
     <xhtml:link rel="alternate" hreflang="ar" href="https://discover-albahrian.vercel.app/heritage" />
@@ -176,7 +176,7 @@
   <!-- 11. الأنشطة والجولات السياحية / Activities -->
   <url>
     <loc>https://discover-albahrian.vercel.app/activities</loc>
-    <lastmod>2026-09-28</lastmod>
+    <lastmod>2026-09-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
     <xhtml:link rel="alternate" hreflang="ar" href="https://discover-albahrian.vercel.app/activities" />
@@ -186,7 +186,7 @@
   <!-- 12. دليل السفر والأسئلة الشائعة / Travel Guide & FAQs -->
   <url>
     <loc>https://discover-albahrian.vercel.app/guide</loc>
-    <lastmod>2026-09-28</lastmod>
+    <lastmod>2026-09-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
     <xhtml:link rel="alternate" hreflang="ar" href="https://discover-albahrian.vercel.app/guide" />
@@ -196,7 +196,7 @@
   <!-- 13. خريطة البحرين التفاعلية / Map -->
   <url>
     <loc>https://discover-albahrian.vercel.app/map</loc>
-    <lastmod>2026-09-28</lastmod>
+    <lastmod>2026-09-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="ar" href="https://discover-albahrian.vercel.app/map" />
@@ -206,7 +206,7 @@
   <!-- 14. من نحن / About Us -->
   <url>
     <loc>https://discover-albahrian.vercel.app/about</loc>
-    <lastmod>2026-09-28</lastmod>
+    <lastmod>2026-09-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="ar" href="https://discover-albahrian.vercel.app/about" />
@@ -216,7 +216,7 @@
   <!-- 15. تواصل معنا / Contact Us -->
   <url>
     <loc>https://discover-albahrian.vercel.app/contact</loc>
-    <lastmod>2026-09-28</lastmod>
+    <lastmod>2026-09-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="ar" href="https://discover-albahrian.vercel.app/contact" />
@@ -226,7 +226,7 @@
   <!-- 16. سياسة الخصوصية / Privacy Policy -->
   <url>
     <loc>https://discover-albahrian.vercel.app/privacy</loc>
-    <lastmod>2026-09-28</lastmod>
+    <lastmod>2026-09-30</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
     <xhtml:link rel="alternate" hreflang="ar" href="https://discover-albahrian.vercel.app/privacy" />
@@ -236,7 +236,7 @@
   <!-- 17. شروط الاستخدام / Terms of Service -->
   <url>
     <loc>https://discover-albahrian.vercel.app/terms</loc>
-    <lastmod>2026-09-28</lastmod>
+    <lastmod>2026-09-30</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
     <xhtml:link rel="alternate" hreflang="ar" href="https://discover-albahrian.vercel.app/terms" />

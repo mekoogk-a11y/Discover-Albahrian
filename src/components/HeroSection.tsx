@@ -17,8 +17,12 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onNavigate }) => {
       <div className="absolute inset-0 z-0">
         <img
           src={heroImage}
-          alt="أفق المنامة ومملكة البحرين - Manama Skyline Bahrain"
+          alt={language === 'ar' ? 'منظر بانورامي لأفق المنامة ومعالم مملكة البحرين الحديثة' : 'Panoramic view of Manama skyline and modern landmarks of the Kingdom of Bahrain'}
           className="w-full h-full object-cover object-center scale-102 transform duration-700 transition-transform"
+          loading="eager"
+          decoding="async"
+          // @ts-expect-error fetchpriority attribute is supported in modern browsers
+          fetchpriority="high"
           referrerPolicy="no-referrer"
         />
         {/* Soft luminous light filter - warm sunlight & clean clarity with readable contrast */}
@@ -37,7 +41,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onNavigate }) => {
           </span>
         </div>
 
-        {/* Title */}
+        {/* Title (Single H1 on Homepage) */}
         <h1 className="text-4xl sm:text-5xl md:text-6xl font-black font-display tracking-tight text-white leading-tight drop-shadow-[0_2px_12px_rgba(0,0,0,0.5)] max-w-4xl mx-auto text-balance">
           {t('appTitle')}
         </h1>
@@ -47,11 +51,11 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onNavigate }) => {
           «{t('appSubtitle')}»
         </p>
 
-        {/* Narrative Deck */}
-        <p className="mt-4 text-sm sm:text-base text-stone-100 max-w-2xl mx-auto leading-relaxed font-medium drop-shadow-[0_1px_4px_rgba(0,0,0,0.7)]">
+        {/* Narrative Deck & Semantic SEO Definition */}
+        <p className="mt-4 text-sm sm:text-base md:text-lg text-stone-100 max-w-3xl mx-auto leading-relaxed font-medium drop-shadow-[0_1px_4px_rgba(0,0,0,0.7)]">
           {language === 'ar'
-            ? 'رحلة معرفية تفاعلية عبر 5,000 عام من الحضارة: من مدافن دلمون الأسطورية وقلاع التراث العالمي إلى عمارة اللؤلؤ ونهضة العاصمة المشرقة.'
-            : 'An interactive cultural odyssey through 5,000 years of civilization: from mythical Dilmun sanctuaries to UNESCO pearling paths and modern coastal marvels.'}
+            ? 'اكتشف البحرين هو دليل رقمي للتعرف على مملكة البحرين، مدنها ومعالمها السياحية وتاريخها وثقافتها وتراثها وأبرز الأماكن التي يمكن للزائر اكتشافها عبر 5,000 عام من الحضارة.'
+            : 'Discover Bahrain is a digital guide to explore the Kingdom of Bahrain, its vibrant cities, tourism landmarks, rich history, authentic culture, and timeless heritage spanning over 5,000 years.'}
         </p>
 
         {/* Primary Action Buttons + Sudanese Ad Voice Studio + Video */}

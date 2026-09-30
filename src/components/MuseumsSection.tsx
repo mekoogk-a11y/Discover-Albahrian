@@ -51,7 +51,7 @@ export const MuseumsSection: React.FC<MuseumsSectionProps> = ({
             const cityName = language === 'ar' ? museum.cityNameAr : museum.cityNameEn;
 
             return (
-              <div
+              <article
                 key={museum.id}
                 className="bg-stone-50 rounded-3xl overflow-hidden border border-stone-200 shadow-xs hover:shadow-xl transition-all duration-300 flex flex-col group"
               >
@@ -59,9 +59,10 @@ export const MuseumsSection: React.FC<MuseumsSectionProps> = ({
                 <div className="relative aspect-16/9 bg-stone-200 overflow-hidden">
                   <img
                     src={museum.image}
-                    alt={name}
+                    alt={language === 'ar' ? `متحف ${museum.nameAr} في ${museum.cityNameAr} - مملكة البحرين` : `${museum.nameEn} in ${museum.cityNameEn}, Bahrain`}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     loading="lazy"
+                    decoding="async"
                     referrerPolicy="no-referrer"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-stone-950/70 via-transparent to-transparent" />
@@ -161,7 +162,7 @@ export const MuseumsSection: React.FC<MuseumsSectionProps> = ({
 
                 </div>
 
-              </div>
+              </article>
             );
           })}
         </div>

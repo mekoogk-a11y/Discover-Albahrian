@@ -121,7 +121,13 @@ export const AdminModal: React.FC<AdminModalProps> = ({ isOpen, onClose, onDataU
                   return (
                     <div key={m.id} className="p-4 bg-white flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                       <div className="flex items-center gap-3">
-                        <img src={m.image} alt="" className="w-12 h-12 rounded-xl object-cover" />
+                        <img
+                          src={m.image}
+                          alt={m.nameAr}
+                          className="w-12 h-12 rounded-xl object-cover"
+                          loading="lazy"
+                          decoding="async"
+                        />
                         <div>
                           <h4 className="text-sm font-bold text-stone-900">{m.nameAr}</h4>
                           <span className="text-xs text-stone-500">{m.cityNameAr}</span>
@@ -193,7 +199,13 @@ export const AdminModal: React.FC<AdminModalProps> = ({ isOpen, onClose, onDataU
                 {landmarks.map((l) => (
                   <div key={l.id} className="p-4 bg-white flex items-center justify-between gap-4">
                     <div className="flex items-center gap-3">
-                      <img src={l.image} alt="" className="w-12 h-12 rounded-xl object-cover" />
+                      <img
+                        src={l.image}
+                        alt={l.nameAr}
+                        className="w-12 h-12 rounded-xl object-cover"
+                        loading="lazy"
+                        decoding="async"
+                      />
                       <div>
                         <h4 className="text-sm font-bold text-stone-900">{l.nameAr}</h4>
                         <span className="text-xs text-stone-500">{l.cityNameAr}</span>

@@ -135,7 +135,7 @@ export const Header: React.FC<HeaderProps> = ({
       {/* Mobile Menu Drawer */}
       {mobileMenuOpen && (
         <div className="lg:hidden border-t border-stone-200 bg-white px-4 pt-3 pb-6 space-y-2 shadow-lg animate-fade-in">
-          <div className="grid grid-cols-2 gap-2 pb-3 border-b border-stone-100">
+          <nav aria-label="التنقل الرئيسي للهاتف" className="grid grid-cols-2 gap-2 pb-3 border-b border-stone-100">
             {navLinks.map((link) => (
               <button
                 key={link.id}
@@ -149,7 +149,7 @@ export const Header: React.FC<HeaderProps> = ({
                 {link.label}
               </button>
             ))}
-          </div>
+          </nav>
 
           <div className="flex items-center justify-between pt-2">
             <button

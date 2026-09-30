@@ -44,6 +44,7 @@ function AppContent() {
 
   // Modals
   const [searchOpen, setSearchOpen] = useState(false);
+  const [initialSearchQuery, setInitialSearchQuery] = useState('');
   const [favoritesOpen, setFavoritesOpen] = useState(false);
   const [aboutOpen, setAboutOpen] = useState(false);
   const [adminOpen, setAdminOpen] = useState(false);
@@ -55,6 +56,33 @@ function AppContent() {
     | { type: 'museum'; data: Museum }
     | null
   >(null);
+
+  // SEO & Deep-linking: Parse URL query parameters on initial page mount
+  useEffect(() => {
+    try {
+      const params = new URLSearchParams(window.location.search);
+      const queryParam = params.get('q') || params.get('search');
+      const landmarkId = params.get('landmark');
+      const cityId = params.get('city');
+      const museumId = params.get('museum');
+
+      if (queryParam) {
+        setInitialSearchQuery(queryParam);
+        setSearchOpen(true);
+      } else if (landmarkId) {
+        const found = landmarks.find((l) => l.id === landmarkId) || dataService.getLandmarkById(landmarkId);
+        if (found) setSelectedDetail({ type: 'landmark', data: found });
+      } else if (cityId) {
+        const found = cities.find((c) => c.id === cityId) || dataService.getCityById(cityId);
+        if (found) setSelectedDetail({ type: 'city', data: found });
+      } else if (museumId) {
+        const found = museums.find((m) => m.id === museumId) || dataService.getMuseumById(museumId);
+        if (found) setSelectedDetail({ type: 'museum', data: found });
+      }
+    } catch {
+      // Fallback gracefully if running in environment without URLSearchParams
+    }
+  }, [landmarks, cities, museums]);
 
   // Share Modal
   const [shareConfig, setShareConfig] = useState<{
@@ -298,7 +326,11 @@ function AppContent() {
       {/* Search Modal */}
       <SearchModal
         isOpen={searchOpen}
-        onClose={() => setSearchOpen(false)}
+        initialQuery={initialSearchQuery}
+        onClose={() => {
+          setSearchOpen(false);
+          setInitialSearchQuery('');
+        }}
         onSelectLandmark={(l) => setSelectedDetail({ type: 'landmark', data: l })}
         onSelectCity={(c) => setSelectedDetail({ type: 'city', data: c })}
         onSelectMuseum={(m) => setSelectedDetail({ type: 'museum', data: m })}

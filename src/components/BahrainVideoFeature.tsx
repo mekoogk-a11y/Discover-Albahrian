@@ -553,8 +553,10 @@ export const BahrainVideoFeature: React.FC<BahrainVideoFeatureProps> = ({ onSele
               >
                 <img
                   src={scene.image}
-                  alt={scene.cityNameAr}
+                  alt={`لقطة فيديو استكشاف مدينة ${scene.cityNameAr}`}
                   className="w-10 h-10 rounded-xl object-cover shrink-0 border border-stone-200"
+                  loading="lazy"
+                  decoding="async"
                 />
                 <div>
                   <span className="text-[10px] text-stone-500 block font-mono font-bold">0{idx + 1}</span>

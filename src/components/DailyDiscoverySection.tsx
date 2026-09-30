@@ -40,8 +40,10 @@ export const DailyDiscoverySection: React.FC<DailyDiscoverySectionProps> = ({
               <div className="aspect-4/3 rounded-2xl overflow-hidden shadow-md border border-stone-200/60 relative">
                 <img
                   src={discovery.image}
-                  alt={title}
+                  alt={language === 'ar' ? `اكتشاف اليوم في البحرين: ${discovery.titleAr}` : `Daily discovery in Bahrain: ${discovery.titleEn}`}
                   className="w-full h-full object-cover transform hover:scale-105 transition-transform duration-500"
+                  loading="lazy"
+                  decoding="async"
                   referrerPolicy="no-referrer"
                 />
                 <div className="absolute top-3 right-3 bg-white/90 backdrop-blur-md px-3 py-1 rounded-full text-xs font-semibold text-[#C8102E] shadow-xs">
@@ -139,8 +141,10 @@ export const DailyDiscoverySection: React.FC<DailyDiscoverySectionProps> = ({
             <div className="relative aspect-16/9 bg-stone-100">
               <img
                 src={discovery.image}
-                alt={title}
+                alt={language === 'ar' ? `تفاصيل اكتشاف اليوم: ${discovery.titleAr}` : `Daily discovery detail: ${discovery.titleEn}`}
                 className="w-full h-full object-cover"
+                loading="lazy"
+                decoding="async"
                 referrerPolicy="no-referrer"
               />
               <button

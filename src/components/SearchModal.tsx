@@ -10,6 +10,7 @@ interface SearchModalProps {
   onSelectLandmark: (l: LandmarkType) => void;
   onSelectCity: (c: City) => void;
   onSelectMuseum: (m: Museum) => void;
+  initialQuery?: string;
 }
 
 export const SearchModal: React.FC<SearchModalProps> = ({
@@ -17,19 +18,23 @@ export const SearchModal: React.FC<SearchModalProps> = ({
   onClose,
   onSelectLandmark,
   onSelectCity,
-  onSelectMuseum
+  onSelectMuseum,
+  initialQuery = ''
 }) => {
   const { language, t } = useLanguage();
-  const [query, setQuery] = useState('');
+  const [query, setQuery] = useState(initialQuery);
   const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     if (isOpen) {
+      if (initialQuery) {
+        setQuery(initialQuery);
+      }
       setTimeout(() => inputRef.current?.focus(), 50);
     } else {
       setQuery('');
     }
-  }, [isOpen]);
+  }, [isOpen, initialQuery]);
 
   if (!isOpen) return null;
 
@@ -134,7 +139,13 @@ export const SearchModal: React.FC<SearchModalProps> = ({
                           className="flex items-center justify-between p-3 rounded-2xl hover:bg-stone-50 cursor-pointer border border-transparent hover:border-stone-200 transition-all"
                         >
                           <div className="flex items-center gap-3">
-                            <img src={l.image} alt="" className="w-12 h-12 rounded-xl object-cover shrink-0" />
+                            <img
+                              src={l.image}
+                              alt={language === 'ar' ? `معلم ${l.nameAr}` : `${l.nameEn} landmark`}
+                              className="w-12 h-12 rounded-xl object-cover shrink-0"
+                              loading="lazy"
+                              decoding="async"
+                            />
                             <div>
                               <h4 className="text-sm font-bold text-stone-900">
                                 {language === 'ar' ? l.nameAr : l.nameEn}
@@ -168,7 +179,13 @@ export const SearchModal: React.FC<SearchModalProps> = ({
                           className="flex items-center justify-between p-3 rounded-2xl hover:bg-stone-50 cursor-pointer border border-transparent hover:border-stone-200 transition-all"
                         >
                           <div className="flex items-center gap-3">
-                            <img src={c.image} alt="" className="w-12 h-12 rounded-xl object-cover shrink-0" />
+                            <img
+                              src={c.image}
+                              alt={language === 'ar' ? `مدينة ${c.nameAr}` : `${c.nameEn} city`}
+                              className="w-12 h-12 rounded-xl object-cover shrink-0"
+                              loading="lazy"
+                              decoding="async"
+                            />
                             <div>
                               <h4 className="text-sm font-bold text-stone-900">
                                 {language === 'ar' ? c.nameAr : c.nameEn}
@@ -202,7 +219,13 @@ export const SearchModal: React.FC<SearchModalProps> = ({
                           className="flex items-center justify-between p-3 rounded-2xl hover:bg-stone-50 cursor-pointer border border-transparent hover:border-stone-200 transition-all"
                         >
                           <div className="flex items-center gap-3">
-                            <img src={m.image} alt="" className="w-12 h-12 rounded-xl object-cover shrink-0" />
+                            <img
+                              src={m.image}
+                              alt={language === 'ar' ? `متحف ${m.nameAr}` : `${m.nameEn} museum`}
+                              className="w-12 h-12 rounded-xl object-cover shrink-0"
+                              loading="lazy"
+                              decoding="async"
+                            />
                             <div>
                               <h4 className="text-sm font-bold text-stone-900">
                                 {language === 'ar' ? m.nameAr : m.nameEn}

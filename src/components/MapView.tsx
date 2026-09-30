@@ -117,7 +117,7 @@ export const MapView: React.FC<MapViewProps> = ({
         const popupContent = `
           <div style="width: 260px; font-family: sans-serif; direction: ${language === 'ar' ? 'rtl' : 'ltr'}; text-align: ${language === 'ar' ? 'right' : 'left'};">
             <div style="height: 120px; width: 100%; overflow: hidden; background: #eee;">
-              <img src="${l.image}" style="width: 100%; height: 100%; object-fit: cover;" alt="${name}" />
+              <img src="${l.image}" style="width: 100%; height: 100%; object-fit: cover;" alt="${language === 'ar' ? `معلم ${l.nameAr} في ${cityName} - البحرين` : `${l.nameEn} in ${cityName}, Bahrain`}" loading="lazy" />
             </div>
             <div style="padding: 12px;">
               <span style="font-size: 10px; font-weight: 700; color: #C8102E; text-transform: uppercase;">${cityName}</span>
@@ -162,7 +162,7 @@ export const MapView: React.FC<MapViewProps> = ({
         const popupContent = `
           <div style="width: 260px; font-family: sans-serif; direction: ${language === 'ar' ? 'rtl' : 'ltr'}; text-align: ${language === 'ar' ? 'right' : 'left'};">
             <div style="height: 120px; width: 100%; overflow: hidden; background: #eee;">
-              <img src="${c.image}" style="width: 100%; height: 100%; object-fit: cover;" alt="${name}" />
+              <img src="${c.image}" style="width: 100%; height: 100%; object-fit: cover;" alt="${language === 'ar' ? `مدينة ${c.nameAr} - البحرين` : `${c.nameEn} city, Bahrain`}" loading="lazy" />
             </div>
             <div style="padding: 12px;">
               <span style="font-size: 10px; font-weight: 700; color: #1F2937; text-transform: uppercase;">${language === 'ar' ? c.governorateAr : c.governorateEn}</span>
@@ -207,7 +207,7 @@ export const MapView: React.FC<MapViewProps> = ({
         const popupContent = `
           <div style="width: 260px; font-family: sans-serif; direction: ${language === 'ar' ? 'rtl' : 'ltr'}; text-align: ${language === 'ar' ? 'right' : 'left'};">
             <div style="height: 120px; width: 100%; overflow: hidden; background: #eee;">
-              <img src="${m.image}" style="width: 100%; height: 100%; object-fit: cover;" alt="${name}" />
+              <img src="${m.image}" style="width: 100%; height: 100%; object-fit: cover;" alt="${language === 'ar' ? `متحف ${m.nameAr} - البحرين` : `${m.nameEn} museum, Bahrain`}" loading="lazy" />
             </div>
             <div style="padding: 12px;">
               <span style="font-size: 10px; font-weight: 700; color: #831843; text-transform: uppercase;">${t('museums')}</span>

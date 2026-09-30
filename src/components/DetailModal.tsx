@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Landmark, City, Museum } from '../types';
 import { useLanguage } from '../context/LanguageContext';
 import {
@@ -42,6 +42,50 @@ export const DetailModal: React.FC<DetailModalProps> = ({
   const { language, t } = useLanguage();
   const [activeImageIdx, setActiveImageIdx] = useState(0);
 
+  // Dynamic SEO Title, Description, and Canonical URL synchronization
+  useEffect(() => {
+    if (!item) return;
+
+    const originalTitle = document.title;
+    const metaDesc = document.querySelector('meta[name="description"]');
+    const originalDesc = metaDesc?.getAttribute('content') || '';
+
+    let newTitle = '';
+    let newDesc = '';
+    let urlParam = '';
+
+    if (item.type === 'landmark') {
+      const l = item.data;
+      newTitle = `${language === 'ar' ? l.nameAr : l.nameEn} | ${language === 'ar' ? 'معالم البحرين' : 'Bahrain Landmarks'} - اكتشف البحرين`;
+      newDesc = language === 'ar' ? l.overviewAr : l.overviewEn;
+      urlParam = `?landmark=${encodeURIComponent(l.id)}`;
+    } else if (item.type === 'city') {
+      const c = item.data;
+      newTitle = `${language === 'ar' ? `مدينة ${c.nameAr}` : `${c.nameEn} City`} | ${language === 'ar' ? 'مدن البحرين' : 'Bahrain Cities'} - اكتشف البحرين`;
+      newDesc = language === 'ar' ? c.descriptionAr : c.descriptionEn;
+      urlParam = `?city=${encodeURIComponent(c.id)}`;
+    } else if (item.type === 'museum') {
+      const m = item.data;
+      newTitle = `${language === 'ar' ? `متحف ${m.nameAr}` : `${m.nameEn}`} | ${language === 'ar' ? 'متاحف البحرين' : 'Bahrain Museums'} - اكتشف البحرين`;
+      newDesc = language === 'ar' ? m.descriptionAr : m.descriptionEn;
+      urlParam = `?museum=${encodeURIComponent(m.id)}`;
+    }
+
+    document.title = newTitle;
+    if (metaDesc && newDesc) {
+      metaDesc.setAttribute('content', newDesc);
+    }
+    window.history.replaceState(null, '', urlParam);
+
+    return () => {
+      document.title = 'اكتشف البحرين | Discover Bahrain';
+      if (metaDesc) {
+        metaDesc.setAttribute('content', originalDesc || 'دليل معرفي وسياحي شامل لاكتشاف مملكة البحرين، مدنها ومعالمها وتاريخها وثقافتها وتراثها وأبرز الأماكن السياحية في المنامة والمحرق وكافة مناطق المملكة.');
+      }
+      window.history.replaceState(null, '', window.location.pathname);
+    };
+  }, [item, language]);
+
   if (!item) return null;
 
   const isFav = isFavorite(item.data.id);
@@ -59,12 +103,60 @@ export const DetailModal: React.FC<DetailModalProps> = ({
       <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-xs p-3 sm:p-6 overflow-y-auto animate-fade-in">
         <div className="w-full max-w-3xl bg-white rounded-3xl shadow-2xl border border-stone-200 overflow-hidden my-4 sm:my-8 flex flex-col max-h-[90vh]">
           
+          {/* Breadcrumb Trail Navigation */}
+          <nav aria-label="مسار التصفح" className="px-5 py-2.5 bg-stone-50 border-b border-stone-200/80 shrink-0 text-xs">
+            <ol className="flex items-center gap-1.5 text-stone-500 overflow-x-auto whitespace-nowrap scrollbar-none font-medium">
+              <li>
+                <button onClick={onClose} className="hover:text-[#C8102E] transition-colors">
+                  {language === 'ar' ? 'الرئيسية' : 'Home'}
+                </button>
+              </li>
+              <ChevronLeft className="w-3.5 h-3.5 text-stone-400 rtl:rotate-0 ltr:rotate-180 shrink-0" aria-hidden="true" />
+              <li>
+                <button onClick={onClose} className="hover:text-[#C8102E] transition-colors">
+                  {language === 'ar' ? 'معالم البحرين' : 'Landmarks'}
+                </button>
+              </li>
+              <ChevronLeft className="w-3.5 h-3.5 text-stone-400 rtl:rotate-0 ltr:rotate-180 shrink-0" aria-hidden="true" />
+              <li className="font-bold text-[#C8102E] truncate" aria-current="page">
+                {name}
+              </li>
+            </ol>
+          </nav>
+
+          {/* Structured Data for Landmark */}
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{
+              __html: JSON.stringify({
+                '@context': 'https://schema.org',
+                '@type': 'TouristAttraction',
+                name: l.nameAr,
+                alternateName: l.nameEn,
+                description: l.overviewAr,
+                image: l.image,
+                geo: {
+                  '@type': 'GeoCoordinates',
+                  latitude: l.coordinates[0],
+                  longitude: l.coordinates[1]
+                },
+                address: {
+                  '@type': 'PostalAddress',
+                  addressLocality: l.cityNameAr,
+                  addressCountry: 'BH'
+                }
+              })
+            }}
+          />
+
           {/* Hero Visual Area with Gallery & Controls */}
           <div className="relative aspect-16/10 sm:aspect-16/9 bg-stone-900 shrink-0">
             <img
               src={images[activeImageIdx] || l.image}
-              alt={name}
+              alt={language === 'ar' ? `معلم ${l.nameAr} في ${cityName} - مملكة البحرين` : `${l.nameEn} landmark in ${cityName}, Bahrain`}
               className="w-full h-full object-cover"
+              loading="lazy"
+              decoding="async"
               referrerPolicy="no-referrer"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-stone-950/80 via-transparent to-black/30" />
@@ -272,8 +364,60 @@ export const DetailModal: React.FC<DetailModalProps> = ({
       <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-xs p-3 sm:p-6 overflow-y-auto animate-fade-in">
         <div className="w-full max-w-3xl bg-white rounded-3xl shadow-2xl border border-stone-200 overflow-hidden my-4 sm:my-8 flex flex-col max-h-[90vh]">
           
+          {/* Breadcrumb Trail Navigation */}
+          <nav aria-label="مسار التصفح" className="px-5 py-2.5 bg-stone-50 border-b border-stone-200/80 shrink-0 text-xs">
+            <ol className="flex items-center gap-1.5 text-stone-500 overflow-x-auto whitespace-nowrap scrollbar-none font-medium">
+              <li>
+                <button onClick={onClose} className="hover:text-[#C8102E] transition-colors">
+                  {language === 'ar' ? 'الرئيسية' : 'Home'}
+                </button>
+              </li>
+              <ChevronLeft className="w-3.5 h-3.5 text-stone-400 rtl:rotate-0 ltr:rotate-180 shrink-0" aria-hidden="true" />
+              <li>
+                <button onClick={onClose} className="hover:text-[#C8102E] transition-colors">
+                  {language === 'ar' ? 'مدن ومناطق البحرين' : 'Cities & Regions'}
+                </button>
+              </li>
+              <ChevronLeft className="w-3.5 h-3.5 text-stone-400 rtl:rotate-0 ltr:rotate-180 shrink-0" aria-hidden="true" />
+              <li className="font-bold text-[#C8102E] truncate" aria-current="page">
+                {name}
+              </li>
+            </ol>
+          </nav>
+
+          {/* Structured Data for City */}
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{
+              __html: JSON.stringify({
+                '@context': 'https://schema.org',
+                '@type': 'City',
+                name: c.nameAr,
+                alternateName: c.nameEn,
+                description: c.descriptionAr,
+                image: c.image,
+                geo: {
+                  '@type': 'GeoCoordinates',
+                  latitude: c.coordinates[0],
+                  longitude: c.coordinates[1]
+                },
+                containedInPlace: {
+                  '@type': 'Country',
+                  name: 'مملكة البحرين'
+                }
+              })
+            }}
+          />
+
           <div className="relative aspect-16/9 bg-stone-900 shrink-0">
-            <img src={c.image} alt={name} className="w-full h-full object-cover" referrerPolicy="no-referrer" />
+            <img
+              src={c.image}
+              alt={language === 'ar' ? `مدينة ${c.nameAr} في ${governorate} - مملكة البحرين` : `${c.nameEn} city, ${governorate}, Bahrain`}
+              className="w-full h-full object-cover"
+              loading="lazy"
+              decoding="async"
+              referrerPolicy="no-referrer"
+            />
             <div className="absolute inset-0 bg-gradient-to-t from-stone-950/80 via-transparent to-black/30" />
 
             <div className="absolute top-4 left-4 right-4 flex items-center justify-between">
@@ -365,8 +509,57 @@ export const DetailModal: React.FC<DetailModalProps> = ({
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-xs p-3 sm:p-6 overflow-y-auto animate-fade-in">
       <div className="w-full max-w-3xl bg-white rounded-3xl shadow-2xl border border-stone-200 overflow-hidden my-4 sm:my-8 flex flex-col max-h-[90vh]">
+        
+        {/* Breadcrumb Trail Navigation */}
+        <nav aria-label="مسار التصفح" className="px-5 py-2.5 bg-stone-50 border-b border-stone-200/80 shrink-0 text-xs">
+          <ol className="flex items-center gap-1.5 text-stone-500 overflow-x-auto whitespace-nowrap scrollbar-none font-medium">
+            <li>
+              <button onClick={onClose} className="hover:text-[#C8102E] transition-colors">
+                {language === 'ar' ? 'الرئيسية' : 'Home'}
+              </button>
+            </li>
+            <ChevronLeft className="w-3.5 h-3.5 text-stone-400 rtl:rotate-0 ltr:rotate-180 shrink-0" aria-hidden="true" />
+            <li>
+              <button onClick={onClose} className="hover:text-[#C8102E] transition-colors">
+                {language === 'ar' ? 'متاحف البحرين' : 'Museums'}
+              </button>
+            </li>
+            <ChevronLeft className="w-3.5 h-3.5 text-stone-400 rtl:rotate-0 ltr:rotate-180 shrink-0" aria-hidden="true" />
+            <li className="font-bold text-[#C8102E] truncate" aria-current="page">
+              {name}
+            </li>
+          </ol>
+        </nav>
+
+        {/* Structured Data for Museum */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'Museum',
+              name: m.nameAr,
+              alternateName: m.nameEn,
+              description: m.descriptionAr,
+              image: m.image,
+              address: {
+                '@type': 'PostalAddress',
+                addressLocality: m.cityNameAr,
+                addressCountry: 'BH'
+              }
+            })
+          }}
+        />
+
         <div className="relative aspect-16/9 bg-stone-900 shrink-0">
-          <img src={m.image} alt={name} className="w-full h-full object-cover" referrerPolicy="no-referrer" />
+          <img
+            src={m.image}
+            alt={language === 'ar' ? `متحف ${m.nameAr} في ${m.cityNameAr} - مملكة البحرين` : `${m.nameEn} in ${m.cityNameEn}, Bahrain`}
+            className="w-full h-full object-cover"
+            loading="lazy"
+            decoding="async"
+            referrerPolicy="no-referrer"
+          />
           <div className="absolute inset-0 bg-gradient-to-t from-stone-950/80 via-transparent to-black/30" />
           <div className="absolute top-4 left-4 right-4 flex items-center justify-between">
             <button onClick={onClose} className="p-2 rounded-full bg-white/80 hover:bg-white text-stone-800 shadow-md">

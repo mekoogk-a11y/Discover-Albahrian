@@ -65,8 +65,10 @@ export const HeritageSection: React.FC<HeritageSectionProps> = ({ heritage }) =>
                 <div className="aspect-4/3 rounded-2xl overflow-hidden shadow-sm border border-stone-200 bg-stone-100">
                   <img
                     src={activeTopic.image}
-                    alt={language === 'ar' ? activeTopic.titleAr : activeTopic.titleEn}
+                    alt={language === 'ar' ? `تراث البحرين الأصيل: ${activeTopic.titleAr}` : `Bahrain heritage: ${activeTopic.titleEn}`}
                     className="w-full h-full object-cover"
+                    loading="lazy"
+                    decoding="async"
                     referrerPolicy="no-referrer"
                   />
                 </div>

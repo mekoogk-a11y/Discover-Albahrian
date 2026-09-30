@@ -48,7 +48,7 @@ export const CitiesSection: React.FC<CitiesSectionProps> = ({
             const governorate = language === 'ar' ? city.governorateAr : city.governorateEn;
 
             return (
-              <div
+              <article
                 key={city.id}
                 onClick={() => onSelectCity(city)}
                 className="group cursor-pointer bg-stone-50 hover:bg-white rounded-3xl overflow-hidden border border-stone-200/90 shadow-xs hover:shadow-xl transition-all duration-300 flex flex-col"
@@ -57,9 +57,10 @@ export const CitiesSection: React.FC<CitiesSectionProps> = ({
                 <div className="relative aspect-16/10 overflow-hidden bg-stone-200">
                   <img
                     src={city.image}
-                    alt={name}
+                    alt={language === 'ar' ? `مدينة ${city.nameAr} في ${city.governorateAr} - مملكة البحرين` : `${city.nameEn} city, ${city.governorateEn}, Bahrain`}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     loading="lazy"
+                    decoding="async"
                     referrerPolicy="no-referrer"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-stone-950/70 via-transparent to-transparent" />
@@ -119,7 +120,7 @@ export const CitiesSection: React.FC<CitiesSectionProps> = ({
 
                 </div>
 
-              </div>
+              </article>
             );
           })}
         </div>

@@ -74,8 +74,10 @@ export const TimelineSection: React.FC<TimelineSectionProps> = ({ events }) => {
             <div className="lg:col-span-5 relative aspect-16/10 lg:aspect-auto">
               <img
                 src={activeEvent.image}
-                alt={language === 'ar' ? activeEvent.titleAr : activeEvent.titleEn}
+                alt={language === 'ar' ? `محطة من تاريخ البحرين: ${activeEvent.titleAr} (${activeEvent.dateLabelAr})` : `Bahrain history milestone: ${activeEvent.titleEn} (${activeEvent.dateLabelEn})`}
                 className="w-full h-full object-cover"
+                loading="lazy"
+                decoding="async"
                 referrerPolicy="no-referrer"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />

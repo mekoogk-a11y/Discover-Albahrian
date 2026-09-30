@@ -121,8 +121,10 @@ export const FavoritesModal: React.FC<FavoritesModalProps> = ({
                   >
                     <img
                       src={item.image}
-                      alt=""
+                      alt={language === 'ar' ? item.titleAr : item.titleEn}
                       className="w-14 h-14 rounded-2xl object-cover shrink-0 shadow-xs"
+                      loading="lazy"
+                      decoding="async"
                     />
                     <div>
                       <span className="text-[11px] font-semibold text-[#C8102E] uppercase">

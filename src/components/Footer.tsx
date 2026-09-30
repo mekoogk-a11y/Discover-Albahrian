@@ -84,9 +84,9 @@ export const Footer: React.FC<FooterProps> = ({ onOpenAbout, onOpenAdmin, onNavi
         {/* Quick Links & Institutional Sources */}
         <div className="py-8 grid grid-cols-2 sm:grid-cols-4 gap-6 text-sm border-b border-stone-300/80">
           <div>
-            <h4 className="text-xs font-bold text-stone-900 uppercase tracking-wider mb-3">
+            <h3 className="text-xs font-bold text-stone-900 uppercase tracking-wider mb-3">
               {language === 'ar' ? 'أقسام المنصة' : 'Platform'}
-            </h4>
+            </h3>
             <ul className="space-y-2">
               <li>
                 <button onClick={() => onNavigate('landmarks')} className="text-stone-600 hover:text-[#C8102E] transition-colors font-medium">
@@ -112,9 +112,9 @@ export const Footer: React.FC<FooterProps> = ({ onOpenAbout, onOpenAdmin, onNavi
           </div>
 
           <div>
-            <h4 className="text-xs font-bold text-stone-900 uppercase tracking-wider mb-3">
+            <h3 className="text-xs font-bold text-stone-900 uppercase tracking-wider mb-3">
               {language === 'ar' ? 'التراث والخريطة' : 'Heritage & Map'}
-            </h4>
+            </h3>
             <ul className="space-y-2">
               <li>
                 <button onClick={() => onNavigate('heritage')} className="text-stone-600 hover:text-[#C8102E] transition-colors font-medium">
@@ -142,9 +142,9 @@ export const Footer: React.FC<FooterProps> = ({ onOpenAbout, onOpenAdmin, onNavi
           </div>
 
           <div className="col-span-2">
-            <h4 className="text-xs font-bold text-stone-900 uppercase tracking-wider mb-3">
+            <h3 className="text-xs font-bold text-stone-900 uppercase tracking-wider mb-3">
               {language === 'ar' ? 'المصادر والجهات المرجعية الرسمية' : 'Official Verified References'}
-            </h4>
+            </h3>
             <div className="space-y-2 text-xs text-stone-600 font-medium">
               <a
                 href="https://culture.gov.bh"

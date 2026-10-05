@@ -182,7 +182,123 @@ export type ItemType =
   | 'restaurant'
   | 'souq'
   | 'beach'
-  | 'activity';
+  | 'activity'
+  | 'event';
+
+export interface Hotel {
+  id: string;
+  nameAr: string;
+  nameEn: string;
+  areaAr: string;
+  areaEn: string;
+  cityId: string;
+  stars: number; // 3, 4, 5
+  rating: number; // e.g. 4.9
+  typeCategory: 'luxury' | 'family' | 'budget' | 'resort';
+  descriptionAr: string;
+  descriptionEn: string;
+  featuresAr: string[];
+  featuresEn: string[];
+  image: string;
+  gallery: string[];
+  phone: string;
+  email: string;
+  websiteUrl: string;
+  bookingUrl?: string;
+  locationAr: string;
+  locationEn: string;
+  coordinates: [number, number];
+  isFeatured?: boolean;
+  status: ContentStatus;
+}
+
+export type RestaurantCuisine =
+  | 'bahraini'
+  | 'arab'
+  | 'asian'
+  | 'international'
+  | 'family'
+  | 'luxury'
+  | 'cafe'
+  | 'sweets';
+
+export interface Restaurant {
+  id: string;
+  nameAr: string;
+  nameEn: string;
+  cuisineType: RestaurantCuisine;
+  cuisineLabelAr: string;
+  cuisineLabelEn: string;
+  areaAr: string;
+  areaEn: string;
+  descriptionAr: string;
+  descriptionEn: string;
+  workingHoursAr: string;
+  workingHoursEn: string;
+  phone: string;
+  whatsapp?: string;
+  websiteUrl?: string;
+  instagramUrl?: string;
+  image: string;
+  gallery: string[];
+  coordinates: [number, number];
+  locationAr: string;
+  locationEn: string;
+  isFeatured?: boolean;
+  status: ContentStatus;
+}
+
+export type EventTimelineCategory = 'upcoming' | 'today' | 'this_week';
+
+export interface BahrainEvent {
+  id: string;
+  titleAr: string;
+  titleEn: string;
+  dateStrAr: string;
+  dateStrEn: string;
+  dateISO: string; // YYYY-MM-DD
+  timeAr: string;
+  timeEn: string;
+  venueAr: string;
+  venueEn: string;
+  category: EventTimelineCategory;
+  descriptionAr: string;
+  descriptionEn: string;
+  image: string;
+  officialUrl: string;
+  coordinates: [number, number];
+  isFeatured?: boolean;
+  status: ContentStatus;
+}
+
+export interface BusinessSubmission {
+  id: string;
+  businessType: 'hotel' | 'restaurant' | 'attraction' | 'business';
+  businessName: string;
+  contactPerson: string;
+  phone: string;
+  whatsapp: string;
+  email: string;
+  city: string;
+  area: string;
+  address: string;
+  googleMapsUrl?: string;
+  websiteUrl?: string;
+  instagramUrl?: string;
+  facebookUrl?: string;
+  description: string;
+  services: string;
+  workingHours?: string;
+  stars?: number;
+  cuisineType?: string;
+  imageUrl?: string;
+  logoUrl?: string;
+  agreedTerms: boolean;
+  submittedAt: number;
+  status: 'pending' | 'approved' | 'rejected';
+  isFeatured?: boolean;
+  adminNotes?: string;
+}
 
 export interface FavoriteItem {
   id: string;

@@ -22,26 +22,82 @@
     <link rel="alternate" hreflang="x-default" href="https://discover-albahrian.vercel.app/" />
     
     <!-- OpenGraph / Facebook / WhatsApp / Telegram -->
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content="website" id="og-type" />
     <meta property="og:site_name" content="اكتشف البحرين | Discover Bahrain" />
-    <meta property="og:title" content="اكتشف البحرين | Discover Bahrain" />
-    <meta property="og:description" content="دليل معرفي وسياحي شامل لاكتشاف مملكة البحرين، مدنها ومعالمها وتاريخها وثقافتها وتراثها وأبرز الأماكن السياحية في المنامة والمحرق وكافة مناطق المملكة." />
-    <meta property="og:url" content="https://discover-albahrian.vercel.app/" />
-    <meta property="og:image" content="https://discover-albahrian.vercel.app/og-image.jpg" />
-    <meta property="og:image:secure_url" content="https://discover-albahrian.vercel.app/og-image.jpg" />
+    <meta property="og:title" content="اكتشف البحرين | Discover Bahrain" id="og-title" />
+    <meta property="og:description" content="دليل معرفي وسياحي شامل لاكتشاف مملكة البحرين، مدنها ومعالمها وتاريخها وثقافتها وتراثها وأبرز الأماكن السياحية في المنامة والمحرق وكافة مناطق المملكة." id="og-desc" />
+    <meta property="og:url" content="https://discover-albahrian.vercel.app/" id="og-url" />
+    <meta property="og:image" content="https://discover-albahrian.vercel.app/og-image.jpg" id="og-image" />
+    <meta property="og:image:secure_url" content="https://discover-albahrian.vercel.app/og-image.jpg" id="og-image-secure" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:image:type" content="image/jpeg" />
-    <meta property="og:image:alt" content="دليل اكتشف البحرين - أفق المنامة ومعالم وسياحة مملكة البحرين" />
+    <meta property="og:image:alt" content="دليل اكتشف البحرين - أفق المنامة ومعالم وسياحة مملكة البحرين" id="og-image-alt" />
     <meta property="og:locale" content="ar_BH" />
     <meta property="og:locale:alternate" content="en_US" />
     
+    <!-- Article Specific OpenGraph Metadata -->
+    <meta property="article:published_time" content="2026-10-09T08:00:00+03:00" />
+    <meta property="article:modified_time" content="2026-10-09T10:00:00+03:00" />
+    <meta property="article:author" content="كمال جعفر زكريا موسى" />
+    <meta property="article:section" content="التقنية والاقتصاد الرقمي" />
+    <meta property="article:tag" content="التحول الرقمي في البحرين" />
+    <meta property="article:tag" content="الذكاء الاصطناعي" />
+    <meta property="article:tag" content="الحكومة الإلكترونية" />
+    <meta property="article:tag" content="رؤية البحرين 2030" />
+    
     <!-- Twitter / X Cards -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="اكتشف البحرين | Discover Bahrain" />
-    <meta name="twitter:description" content="دليل معرفي وسياحي شامل لاكتشاف مملكة البحرين، مدنها ومعالمها وتاريخها وثقافتها وتراثها وأبرز الأماكن السياحية." />
-    <meta name="twitter:image" content="https://discover-albahrian.vercel.app/og-image.jpg" />
-    <meta name="twitter:image:alt" content="دليل سياحة ومعالم مملكة البحرين - اكتشف البحرين" />
+    <meta name="twitter:card" content="summary_large_image" id="twitter-card" />
+    <meta name="twitter:title" content="اكتشف البحرين | Discover Bahrain" id="twitter-title" />
+    <meta name="twitter:description" content="دليل معرفي وسياحي شامل لاكتشاف مملكة البحرين، مدنها ومعالمها وتاريخها وثقافتها وتراثها وأبرز الأماكن السياحية." id="twitter-desc" />
+    <meta name="twitter:image" content="https://discover-albahrian.vercel.app/og-image.jpg" id="twitter-image" />
+    <meta name="twitter:image:alt" content="دليل سياحة ومعالم مملكة البحرين - اكتشف البحرين" id="twitter-image-alt" />
+
+    <!-- Synchronous early SEO updater for Digital Transformation Article -->
+    <script>
+      (function() {
+        var path = window.location.pathname || '';
+        var search = window.location.search || '';
+        var hash = window.location.hash || '';
+        var isArticle = path.indexOf('digital-transformation') !== -1 ||
+                        search.indexOf('digital-transformation') !== -1 ||
+                        hash.indexOf('digital-transformation') !== -1;
+
+        if (isArticle) {
+          var title = "التحول الرقمي في مملكة البحرين: الذكاء الاصطناعي والتكنولوجيا ومستقبل الاقتصاد | اكتشف البحرين";
+          var desc = "دراسة وبحث صحفي تقني شامل حول مسيرة التحول الرقمي في مملكة البحرين، وتطبيقات الذكاء الاصطناعي، والحكومة الإلكترونية، والأمن السيبراني، ومستقبل الاقتصاد الرقمي ورؤية البحرين 2030.";
+          var articleUrl = "https://discover-albahrian.vercel.app/digital-transformation-bahrain";
+          var ogImage = "https://discover-albahrian.vercel.app/og-digital-transformation.jpg";
+          var altText = "التحول الرقمي في مملكة البحرين: الذكاء الاصطناعي والتكنولوجيا ومستقبل الاقتصاد";
+
+          document.title = title;
+          
+          var metaDesc = document.querySelector('meta[name="description"]');
+          if (metaDesc) metaDesc.setAttribute('content', desc);
+
+          var canonical = document.querySelector('link[rel="canonical"]');
+          if (canonical) canonical.setAttribute('href', articleUrl);
+
+          var setMeta = function(id, val, attr) {
+            var el = document.getElementById(id);
+            if (el) el.setAttribute(attr || 'content', val);
+          };
+
+          setMeta('og-type', 'article');
+          setMeta('og-title', title);
+          setMeta('og-desc', desc);
+          setMeta('og-url', articleUrl);
+          setMeta('og-image', ogImage);
+          setMeta('og-image-secure', ogImage);
+          setMeta('og-image-alt', altText);
+
+          setMeta('twitter-title', title);
+          setMeta('twitter-desc', desc);
+          setMeta('twitter-image', ogImage);
+          setMeta('twitter-image-alt', altText);
+        }
+      })();
+    </script>
 
     <!-- PWA & Mobile Web App Meta -->
     <link rel="manifest" href="/manifest.json" />

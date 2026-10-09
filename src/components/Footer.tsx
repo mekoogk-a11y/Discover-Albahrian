@@ -6,9 +6,10 @@ interface FooterProps {
   onOpenAbout: () => void;
   onOpenAdmin: () => void;
   onNavigate: (sectionId: string) => void;
+  onOpenArticle?: () => void;
 }
 
-export const Footer: React.FC<FooterProps> = ({ onOpenAbout, onOpenAdmin, onNavigate }) => {
+export const Footer: React.FC<FooterProps> = ({ onOpenAbout, onOpenAdmin, onNavigate, onOpenArticle }) => {
   const { language, t } = useLanguage();
 
   const whatsappNumber = '00249919980435';
@@ -88,6 +89,18 @@ export const Footer: React.FC<FooterProps> = ({ onOpenAbout, onOpenAdmin, onNavi
               {language === 'ar' ? 'أقسام المنصة' : 'Platform'}
             </h3>
             <ul className="space-y-2">
+              <li>
+                <button onClick={() => onNavigate('investment')} className="text-amber-800 hover:text-amber-950 font-bold transition-colors text-right flex items-center gap-1">
+                  <span>💼 {language === 'ar' ? 'الاستثمار وفرص الأعمال' : 'Invest in Bahrain & Opportunities'}</span>
+                </button>
+              </li>
+              {onOpenArticle && (
+                <li>
+                  <button onClick={onOpenArticle} className="text-blue-700 hover:text-blue-900 font-bold transition-colors text-right">
+                    {language === 'ar' ? '📊 دراسة: التحول الرقمي والذكاء الاصطناعي' : '📊 Study: Digital Transformation & AI'}
+                  </button>
+                </li>
+              )}
               <li>
                 <button onClick={() => onNavigate('landmarks')} className="text-stone-600 hover:text-[#C8102E] transition-colors font-medium">
                   {t('landmarks')}
@@ -171,6 +184,51 @@ export const Footer: React.FC<FooterProps> = ({ onOpenAbout, onOpenAdmin, onNavi
                 className="flex items-center gap-1 hover:text-[#C8102E] transition-colors"
               >
                 <span>هيئة البحرين للسياحة والمعارض (BTEA)</span>
+                <ExternalLink className="w-3 h-3 text-stone-400" />
+              </a>
+              <a
+                href="https://www.bahrain.bh"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-1 hover:text-blue-700 transition-colors"
+              >
+                <span>البوابة الوطنية لمملكة البحرين (bahrain.bh)</span>
+                <ExternalLink className="w-3 h-3 text-stone-400" />
+              </a>
+              <a
+                href="https://www.iga.gov.bh"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-1 hover:text-blue-700 transition-colors"
+              >
+                <span>هيئة المعلومات والحكومة الإلكترونية (iGA)</span>
+                <ExternalLink className="w-3 h-3 text-stone-400" />
+              </a>
+              <a
+                href="https://www.ncsc.gov.bh"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-1 hover:text-blue-700 transition-colors"
+              >
+                <span>المركز الوطني للأمن السيبراني (NCSC)</span>
+                <ExternalLink className="w-3 h-3 text-stone-400" />
+              </a>
+              <a
+                href="https://www.bahrain.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-1 hover:text-amber-800 transition-colors"
+              >
+                <span>مجلس التنمية الاقتصادية في البحرين (Bahrain EDB)</span>
+                <ExternalLink className="w-3 h-3 text-stone-400" />
+              </a>
+              <a
+                href="https://www.sijilat.bh"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-1 hover:text-amber-800 transition-colors"
+              >
+                <span>بوابة السجلات والتراخيص التجارية (Sijilat.bh)</span>
                 <ExternalLink className="w-3 h-3 text-stone-400" />
               </a>
             </div>

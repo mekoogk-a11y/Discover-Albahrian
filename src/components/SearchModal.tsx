@@ -47,12 +47,13 @@ export const SearchModal: React.FC<SearchModalProps> = ({
     results.timeline.length;
 
   const suggestions = [
+    { labelAr: 'الاستثمار في البحرين', labelEn: 'Invest in Bahrain' },
     { labelAr: 'قلعة البحرين', labelEn: 'Bahrain Fort' },
     { labelAr: 'طريق اللؤلؤ', labelEn: 'Pearling Path' },
     { labelAr: 'المحرق', labelEn: 'Muharraq' },
     { labelAr: 'شجرة الحياة', labelEn: 'Tree of Life' },
     { labelAr: 'متحف البحرين الوطني', labelEn: 'National Museum' },
-    { labelAr: 'حضارة دلمون', labelEn: 'Dilmun Civilization' }
+    { labelAr: 'التحول الرقمي', labelEn: 'Digital Transformation' }
   ];
 
   return (
@@ -169,7 +170,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({
                       {t('cities')} ({results.cities.length})
                     </span>
                     <div className="space-y-2">
-                      {results.cities.map((c) => (
+                      {results.cities.map((c: City) => (
                         <div
                           key={c.id}
                           onClick={() => {

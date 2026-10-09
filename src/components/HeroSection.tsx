@@ -1,5 +1,5 @@
 import React from 'react';
-import { Compass, MapPin, Landmark, Clock, ArrowDown, Video, Radio } from 'lucide-react';
+import { Compass, MapPin, Landmark, Clock, ArrowDown, Video, Radio, Briefcase } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import heroImage from '../assets/images/hero_bahrain_skyline_1790335198535.jpg';
 
@@ -60,6 +60,14 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onNavigate }) => {
 
         {/* Primary Action Buttons + Sudanese Ad Voice Studio + Video */}
         <div className="mt-9 flex flex-wrap items-center justify-center gap-3 sm:gap-4">
+          <button
+            onClick={() => onNavigate('investment')}
+            className="flex items-center gap-2 px-6 py-3.5 rounded-xl font-bold text-sm sm:text-base text-stone-900 bg-gradient-to-r from-amber-300 via-amber-200 to-amber-400 hover:from-amber-200 hover:to-amber-300 shadow-xl hover:shadow-2xl hover:shadow-amber-400/30 transition-all duration-200 transform hover:-translate-y-0.5 active:translate-y-0 ring-2 ring-amber-400/50"
+          >
+            <Briefcase className="w-4 h-4 sm:w-5 sm:h-5 text-stone-900" />
+            <span>{language === 'ar' ? '💼 الاستثمار في البحرين' : '💼 Invest in Bahrain'}</span>
+          </button>
+
           <button
             onClick={() => onNavigate('sudanese-ad-studio')}
             className="flex items-center gap-2 px-6 py-3.5 rounded-xl font-bold text-sm sm:text-base text-white bg-gradient-to-r from-amber-600 via-rose-600 to-[#C8102E] hover:from-amber-500 hover:to-[#A50D25] shadow-xl hover:shadow-2xl hover:shadow-red-600/30 transition-all duration-200 transform hover:-translate-y-0.5 active:translate-y-0 ring-2 ring-amber-300/40"

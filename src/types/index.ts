@@ -310,3 +310,65 @@ export interface FavoriteItem {
   image: string;
   addedAt: number;
 }
+
+export type InvestmentSectorKey =
+  | 'all'
+  | 'fintech'
+  | 'tech'
+  | 'logistics'
+  | 'manufacturing'
+  | 'tourism'
+  | 'healthcare'
+  | 'realestate'
+  | 'energy';
+
+export interface InvestmentOpportunity {
+  id: string;
+  titleAr: string;
+  titleEn: string;
+  sectorAr: string;
+  sectorEn: string;
+  sectorKey: InvestmentSectorKey;
+  descriptionAr: string;
+  descriptionEn: string;
+  investmentRangeAr: string;
+  investmentRangeEn: string;
+  locationAr: string;
+  locationEn: string;
+  highlightsAr: string[];
+  highlightsEn: string[];
+  incentivesAr: string[];
+  incentivesEn: string[];
+  facilitatorAr: string;
+  facilitatorEn: string;
+  officialUrl: string;
+  image: string;
+  isFeatured?: boolean;
+}
+
+export interface InvestmentAdvantage {
+  id: string;
+  icon: string;
+  titleAr: string;
+  titleEn: string;
+  descriptionAr: string;
+  descriptionEn: string;
+  statNumber?: string;
+  statLabelAr?: string;
+  statLabelEn?: string;
+}
+
+export interface InvestorInquiry {
+  id: string;
+  fullName: string;
+  companyName: string;
+  email: string;
+  phone: string;
+  whatsapp: string;
+  country: string;
+  sector: string;
+  capitalBudget: string;
+  notes: string;
+  createdAt: number;
+}
+

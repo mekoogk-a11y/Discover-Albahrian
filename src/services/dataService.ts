@@ -436,6 +436,10 @@ class DataService {
     return this.cities;
   }
 
+  public getCities(): City[] {
+    return this.cities;
+  }
+
   public getCityById(id: string): City | undefined {
     return this.cities.find((c) => c.id === id);
   }
@@ -482,11 +486,11 @@ class DataService {
     return this.hospitality.filter((item) => item.type === type);
   }
 
-  public getHotels(): HospitalityItem[] {
+  public getHospitalityHotels(): HospitalityItem[] {
     return this.getHospitalityItems('hotel');
   }
 
-  public getRestaurants(): HospitalityItem[] {
+  public getHospitalityRestaurants(): HospitalityItem[] {
     return this.getHospitalityItems('restaurant');
   }
 

@@ -11,6 +11,8 @@ interface HeaderProps {
   favoritesCount: number;
   activeSection: string;
   onNavigate: (sectionId: string) => void;
+  onOpenArticle?: () => void;
+  isArticleActive?: boolean;
 }
 
 export const Header: React.FC<HeaderProps> = ({
@@ -20,12 +22,16 @@ export const Header: React.FC<HeaderProps> = ({
   onOpenAdmin,
   favoritesCount,
   activeSection,
-  onNavigate
+  onNavigate,
+  onOpenArticle,
+  isArticleActive = false
 }) => {
   const { language, toggleLanguage, t } = useLanguage();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const navLinks = [
+    { id: 'investment', label: language === 'ar' ? '💼 الاستثمار في البحرين' : '💼 Invest in Bahrain' },
+    { id: 'digital-transformation-bahrain', label: language === 'ar' ? 'التحول الرقمي' : 'Digital Transformation' },
     { id: 'sudanese-ad-studio', label: language === 'ar' ? '🎙️ صوت إعلاني' : '🎙️ Voice Ad' },
     { id: 'video-tour', label: language === 'ar' ? 'فيديو المدن' : 'Cities Video' },
     { id: 'landmarks', label: t('landmarks') },
@@ -37,7 +43,11 @@ export const Header: React.FC<HeaderProps> = ({
   ];
 
   const handleNavClick = (id: string) => {
-    onNavigate(id);
+    if (id === 'digital-transformation-bahrain' && onOpenArticle) {
+      onOpenArticle();
+    } else {
+      onNavigate(id);
+    }
     setMobileMenuOpen(false);
   };
 
@@ -59,20 +69,23 @@ export const Header: React.FC<HeaderProps> = ({
         {/* Zone 2: 4-6 clean text navigation links */}
         <nav className="hidden lg:flex items-center gap-7 text-sm font-medium text-stone-600">
           {navLinks.map((link) => {
-            const isActive = activeSection === link.id;
+            const isActive =
+              link.id === 'digital-transformation-bahrain'
+                ? isArticleActive
+                : activeSection === link.id && !isArticleActive;
             return (
               <button
                 key={link.id}
                 onClick={() => handleNavClick(link.id)}
                 className={`relative py-1 transition-colors whitespace-nowrap ${
                   isActive
-                    ? 'text-[#C8102E] font-semibold'
+                    ? 'text-blue-700 font-bold'
                     : 'hover:text-stone-900'
                 }`}
               >
                 {link.label}
                 {isActive && (
-                  <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#C8102E] rounded-full" />
+                  <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-blue-600 rounded-full" />
                 )}
               </button>
             );

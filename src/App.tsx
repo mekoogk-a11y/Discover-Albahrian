@@ -6,7 +6,10 @@ import { Landmark, City, Museum, FavoriteItem, DailyDiscovery } from './types';
 // Components
 import { Header } from './components/Header';
 import { HeroSection } from './components/HeroSection';
+import { InvestmentSection } from './components/InvestmentSection';
 import { SudaneseCommercialAudioSection } from './components/SudaneseCommercialAudioSection';
+import { TechArticleTeaserSection } from './components/TechArticleTeaserSection';
+import { DigitalTransformationArticle } from './components/DigitalTransformationArticle';
 import { DailyDiscoverySection } from './components/DailyDiscoverySection';
 import { BahrainVideoFeature } from './components/BahrainVideoFeature';
 import { LandmarksSection } from './components/LandmarksSection';
@@ -41,6 +44,45 @@ function AppContent() {
 
   // Navigation State
   const [activeSection, setActiveSection] = useState('hero');
+  const [currentView, setCurrentView] = useState<'home' | 'article'>(() => {
+    if (typeof window === 'undefined') return 'home';
+    const path = window.location.pathname;
+    const params = new URLSearchParams(window.location.search);
+    return path.includes('digital-transformation-bahrain') ||
+      params.get('page') === 'digital-transformation-bahrain' ||
+      params.get('article') === 'digital-transformation-bahrain'
+      ? 'article'
+      : 'home';
+  });
+
+  const handleOpenArticle = () => {
+    setCurrentView('article');
+    try {
+      window.history.pushState(null, '', '/digital-transformation-bahrain');
+    } catch {}
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleBackToHome = () => {
+    setCurrentView('home');
+    try {
+      window.history.pushState(null, '', '/');
+    } catch {}
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  // Synchronize browser history popstate (Back/Forward buttons)
+  useEffect(() => {
+    const handlePopState = () => {
+      const isArticle =
+        window.location.pathname.includes('digital-transformation-bahrain') ||
+        new URLSearchParams(window.location.search).get('page') === 'digital-transformation-bahrain' ||
+        new URLSearchParams(window.location.search).get('article') === 'digital-transformation-bahrain';
+      setCurrentView(isArticle ? 'article' : 'home');
+    };
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
 
   // Modals
   const [searchOpen, setSearchOpen] = useState(false);
@@ -69,6 +111,8 @@ function AppContent() {
       if (queryParam) {
         setInitialSearchQuery(queryParam);
         setSearchOpen(true);
+      } else if (params.get('invest') || params.get('investment') || window.location.hash === '#investment') {
+        setTimeout(() => handleNavigate('investment'), 250);
       } else if (landmarkId) {
         const found = landmarks.find((l) => l.id === landmarkId) || dataService.getLandmarkById(landmarkId);
         if (found) setSelectedDetail({ type: 'landmark', data: found });
@@ -234,91 +278,124 @@ function AppContent() {
         onOpenAdmin={() => setAdminOpen(true)}
         favoritesCount={favorites.length}
         activeSection={activeSection}
-        onNavigate={handleNavigate}
+        onNavigate={(sec) => {
+          if (currentView === 'article') {
+            handleBackToHome();
+            setTimeout(() => handleNavigate(sec), 100);
+          } else {
+            handleNavigate(sec);
+          }
+        }}
+        onOpenArticle={handleOpenArticle}
+        isArticleActive={currentView === 'article'}
       />
 
-      {/* Main Content Area */}
-      <main className="flex-1">
-        
-        {/* 2. Hero Section */}
-        <HeroSection onNavigate={handleNavigate} />
-
-        {/* 3. Sudanese Commercial Male Voice Studio (صوت إعلاني حماسي بالعامية السودانية) */}
-        <SudaneseCommercialAudioSection />
-
-        {/* 4. Daily Discovery (اكتشاف اليوم) */}
-        <DailyDiscoverySection
-          discovery={dailyDiscovery}
-          onOpenLandmark={(landmarkId) => {
-            const l = landmarks.find((x) => x.id === landmarkId);
-            if (l) setSelectedDetail({ type: 'landmark', data: l });
-          }}
-          onShare={openShare}
-          isFavorite={isFavorite(dailyDiscovery.id)}
-          onToggleFavorite={toggleDailyFavorite}
-        />
-
-        {/* 5. Bahrain Cities Video Feature (فيديو استكشاف مدن البحرين بصوت رجالي نقي بدون موسيقى وبدون صور نساء) */}
-        <BahrainVideoFeature
-          onSelectCityByName={(name) => {
-            const found = cities.find(
-              (c) => c.nameAr.includes(name) || name.includes(c.nameAr)
-            );
-            if (found) {
-              setSelectedDetail({ type: 'city', data: found });
-            }
+      {currentView === 'article' ? (
+        <DigitalTransformationArticle
+          onBackToHome={handleBackToHome}
+          onNavigateSection={(sec) => {
+            handleBackToHome();
+            setTimeout(() => handleNavigate(sec), 150);
           }}
         />
+      ) : (
+        /* Main Content Area */
+        <main className="flex-1">
+          
+          {/* 2. Hero Section */}
+          <HeroSection onNavigate={handleNavigate} />
 
-        {/* 5. Landmarks Section (معالم تستحق الاكتشاف) */}
-        <LandmarksSection
-          landmarks={landmarks}
-          onSelectLandmark={(l) => setSelectedDetail({ type: 'landmark', data: l })}
-          onShare={openShare}
-          isFavorite={isFavorite}
-          onToggleFavorite={toggleLandmarkFavorite}
-        />
+          {/* 3. Special Tech Article Teaser Banner (التحول الرقمي والذكاء الاصطناعي في البحرين) */}
+          <TechArticleTeaserSection onOpenArticle={handleOpenArticle} />
 
-        {/* 5. Cities & Regions (مناطق ومدن البحرين) */}
-        <CitiesSection
-          cities={cities}
-          onSelectCity={(c) => setSelectedDetail({ type: 'city', data: c })}
-          isFavorite={isFavorite}
-          onToggleFavorite={toggleCityFavorite}
-        />
+          {/* 4. Investment in Bahrain & Flagship Opportunities (الاستثمار في البحرين وفرص الأعمال) */}
+          <InvestmentSection onOpenArticle={handleOpenArticle} />
 
-        {/* 6. History Timeline (البحرين عبر الزمن) */}
-        <TimelineSection events={timeline} />
+          {/* 5. Sudanese Commercial Male Voice Studio (صوت إعلاني حماسي بالعامية السودانية) */}
+          <SudaneseCommercialAudioSection />
 
-        {/* 7. Heritage Section (تراث البحرين) */}
-        <HeritageSection heritage={heritage} />
+          {/* 5. Daily Discovery (اكتشاف اليوم) */}
+          <DailyDiscoverySection
+            discovery={dailyDiscovery}
+            onOpenLandmark={(landmarkId) => {
+              const l = landmarks.find((x) => x.id === landmarkId);
+              if (l) setSelectedDetail({ type: 'landmark', data: l });
+            }}
+            onShare={openShare}
+            isFavorite={isFavorite(dailyDiscovery.id)}
+            onToggleFavorite={toggleDailyFavorite}
+          />
 
-        {/* 8. Museums Section (متاحف البحرين) */}
-        <MuseumsSection
-          museums={museums}
-          onSelectMuseum={(m) => setSelectedDetail({ type: 'museum', data: m })}
-          onShare={openShare}
-          isFavorite={isFavorite}
-          onToggleFavorite={toggleMuseumFavorite}
-        />
+          {/* 6. Bahrain Cities Video Feature (فيديو استكشاف مدن البحرين بصوت رجالي نقي بدون موسيقى وبدون صور نساء) */}
+          <BahrainVideoFeature
+            onSelectCityByName={(name) => {
+              const found = cities.find(
+                (c) => c.nameAr.includes(name) || name.includes(c.nameAr)
+              );
+              if (found) {
+                setSelectedDetail({ type: 'city', data: found });
+              }
+            }}
+          />
 
-        {/* 9. Interactive Map View (اكتشف البحرين على الخريطة) */}
-        <MapView
-          landmarks={landmarks}
-          cities={cities}
-          museums={museums}
-          onSelectLandmark={(l) => setSelectedDetail({ type: 'landmark', data: l })}
-          onSelectCity={(c) => setSelectedDetail({ type: 'city', data: c })}
-          onSelectMuseum={(m) => setSelectedDetail({ type: 'museum', data: m })}
-        />
+          {/* 7. Landmarks Section (معالم تستحق الاكتشاف) */}
+          <LandmarksSection
+            landmarks={landmarks}
+            onSelectLandmark={(l) => setSelectedDetail({ type: 'landmark', data: l })}
+            onShare={openShare}
+            isFavorite={isFavorite}
+            onToggleFavorite={toggleLandmarkFavorite}
+          />
 
-      </main>
+          {/* 8. Cities & Regions (مناطق ومدن البحرين) */}
+          <CitiesSection
+            cities={cities}
+            onSelectCity={(c) => setSelectedDetail({ type: 'city', data: c })}
+            isFavorite={isFavorite}
+            onToggleFavorite={toggleCityFavorite}
+          />
 
-      {/* 10. Footer with Dedicated Credits */}
+          {/* 9. History Timeline (البحرين عبر الزمن) */}
+          <TimelineSection events={timeline} />
+
+          {/* 10. Heritage Section (تراث البحرين) */}
+          <HeritageSection heritage={heritage} />
+
+          {/* 11. Museums Section (متاحف البحرين) */}
+          <MuseumsSection
+            museums={museums}
+            onSelectMuseum={(m) => setSelectedDetail({ type: 'museum', data: m })}
+            onShare={openShare}
+            isFavorite={isFavorite}
+            onToggleFavorite={toggleMuseumFavorite}
+          />
+
+          {/* 12. Interactive Map View (اكتشف البحرين على الخريطة) */}
+          <MapView
+            landmarks={landmarks}
+            cities={cities}
+            museums={museums}
+            onSelectLandmark={(l) => setSelectedDetail({ type: 'landmark', data: l })}
+            onSelectCity={(c) => setSelectedDetail({ type: 'city', data: c })}
+            onSelectMuseum={(m) => setSelectedDetail({ type: 'museum', data: m })}
+          />
+
+        </main>
+      )}
+
+      {/* Footer with Dedicated Credits & Tech References */}
       <Footer
         onOpenAbout={() => setAboutOpen(true)}
         onOpenAdmin={() => setAdminOpen(true)}
-        onNavigate={handleNavigate}
+        onNavigate={(sec) => {
+          if (currentView === 'article') {
+            handleBackToHome();
+            setTimeout(() => handleNavigate(sec), 100);
+          } else {
+            handleNavigate(sec);
+          }
+        }}
+        onOpenArticle={handleOpenArticle}
       />
 
       {/* --- Modals & Overlays --- */}

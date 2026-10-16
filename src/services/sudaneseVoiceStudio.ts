@@ -8,7 +8,7 @@ export interface CommercialScript {
   id: string;
   titleAr: string;
   subtitleAr: string;
-  category: 'main_promo' | 'weekend' | 'history' | 'hospitality' | 'quick_spot';
+  category: 'main_promo' | 'investment' | 'weekend' | 'history' | 'hospitality' | 'quick_spot' | 'brand_sponsor';
   durationEstimate: string;
   textSudanese: string;
   phoneticGuide?: string;
@@ -18,13 +18,23 @@ export interface CommercialScript {
 export const SUDANESE_COMMERCIAL_SCRIPTS: CommercialScript[] = [
   {
     id: 'main_promo',
-    titleAr: 'الإعلان الرئيسي الحماسي: يا زول يا حبيبنا!',
+    titleAr: 'الإعلان السياحي الرئيسي: يا زول يا حبيبنا!',
     subtitleAr: 'السبوت الإعلاني الشامل لترويج تطبيق وسياحة البحرين',
     category: 'main_promo',
     durationEstimate: '35 ثانية',
     textSudanese:
       'يا زووول يا حبيبنا! أسمعني دقيقة بس! داير ليك رحلة ما حصلت في حياتك، تفرح بيها قلبك وتغيّر جو بالجد؟ أرح معانا طوالي على مملكة البحرين! بلد الكرم، والأصالة، والناس الطيبين! من أسواق المنامة العتيقة وأبراجها الشامخة، لقلاع الرفاع وتاريخ طريق اللؤلؤ في المحرق! شواطئ الزلاق ترد الروح، وريحة الهيل والقهوة في كل زقاق! ما تضيّع وقتك، نزّل تطبيق اكتشف البحرين هسة، وخلي رحلتك الأسطورية تبدأ من اللحظة دي! يا هلا بيك في درة الخليج.. يا زول ما تفوتك!',
     keyPhrases: ['يا زووول يا حبيبنا!', 'أرح معانا طوالي', 'ترد الروح', 'نزّل تطبيق اكتشف البحرين هسة', 'يا زول ما تفوتك!']
+  },
+  {
+    id: 'investment',
+    titleAr: 'إعلان الاستثمار وريادة الأعمال: يا زول يا طموح!',
+    subtitleAr: 'إعلان ناري موجه للمستثمرين وأصحاب المشاريع والشركات',
+    category: 'investment',
+    durationEstimate: '32 ثانية',
+    textSudanese:
+      'يا زول يا طموح! بتفتش عن بيئة استثمارية مضمونة وأرباح تفتح النفس؟ أسمع كلام الزول المجرب: مملكة البحرين هي وجهتك الأولى للاستثمار وريادة الأعمال! تملك أجنبي كامل 100%، وصفر ضرائب شركات، وموقع استراتيجي يربطك بكل أسواق الخليج! شركات التكنولوجيا والذكاء الاصطناعي والمصارف العالمية كلها متجمعة هنا! افتح قسم الاستثمار في منصة اكتشف البحرين، واحسب تكاليف مشروعك في ثواني! فرصتك بين يديك.. أقدِم وما تتردد يا بطل!',
+    keyPhrases: ['يا زول يا طموح!', 'تملك أجنبي 100%', 'صفر ضرائب', 'أقدِم وما تتردد يا بطل!']
   },
   {
     id: 'weekend',
@@ -63,8 +73,18 @@ export const SUDANESE_COMMERCIAL_SCRIPTS: CommercialScript[] = [
     category: 'quick_spot',
     durationEstimate: '15 ثانية',
     textSudanese:
-      'يا زول! داير تسافر البحرين؟ ما تشيل هم! تطبيق اكتشف البحرين جاب ليك كل الأماكن، المعالم، والفنادق في جيبك! حمّل التطبيق هسة وعيش المغامرة.. أرح يا حبيب!',
-    keyPhrases: ['يا زول!', 'ما تشيل هم!', 'في جيبك!', 'أرح يا حبيب!']
+      'يا زول! داير تسافر البحرين وتعيش أحلى الأيام؟ ما تشيل هم نهائي! تطبيق اكتشف البحرين جاب ليك كل الأماكن، المعالم، والفنادق والمطاعم في جيبك! حمّل التطبيق هسة وعيش المتعة.. أرح يا حبيبنا!',
+    keyPhrases: ['يا زول!', 'ما تشيل هم نهائي!', 'في جيبك!', 'أرح يا حبيبنا!']
+  },
+  {
+    id: 'brand_sponsor',
+    titleAr: 'إعلان الرعايات التسويقية: وصّل إعلانك لكل الناس!',
+    subtitleAr: 'إعلان خاص لأصحاب الأعمال والخدمات للترويج عبر المنصة',
+    category: 'brand_sponsor',
+    durationEstimate: '24 ثانية',
+    textSudanese:
+      'داير إعلانك يكسّر الدنيا ويوصل لآلاف الزوار في البحرين والخليج؟ مع منصة اكتشف البحرين بنقدّم ليك تغطية إعلانية ذكية وتصوير احترافي وحملات تسويقية حماسية تشعل المشاهدات! للإعلان والرعاية، تواصل معانا هسة على واتساب: 00249919980435 وخلي بيزنسك يلمع!',
+    keyPhrases: ['يكسّر الدنيا!', 'تغطية إعلانية ذكية', 'واتساب 00249919980435', 'خلي بيزنسك يلمع!']
   }
 ];
 
@@ -292,6 +312,9 @@ class SudaneseVoiceStudio {
     return true;
   }
 
+  private lastAudioBase64: string | null = null;
+  private currentSourceNode: AudioBufferSourceNode | null = null;
+
   /**
    * Tries server-side Gemini TTS first, falls back gracefully to Web Audio & Speech synthesis
    */
@@ -301,46 +324,71 @@ class SudaneseVoiceStudio {
       pitch?: number;
       rate?: number;
       energy?: 'high' | 'ultra' | 'balanced';
+      voiceName?: 'Fenrir' | 'Charon' | 'Puck';
       onStart?: () => void;
       onEnd?: () => void;
     } = {}
   ): Promise<void> {
     try {
       this.initAudioContext();
+      if (this.audioCtx && this.audioCtx.state === 'suspended') {
+        await this.audioCtx.resume();
+      }
+
+      this.playRadioCue('intro');
+
       // Try server endpoint
       const response = await fetch('/api/tts', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           text,
+          voiceName: options.voiceName || 'Fenrir',
           style:
-            'Enthusiastic authoritative male voice, warm Sudanese Arabic commercial advertising tone, energetic cadence without background music',
+            'Enthusiastic and authoritative Sudanese Arabic commercial advertising tone, energetic male radio broadcaster voice, upbeat pace without background music',
         }),
       });
 
       if (response.ok) {
         const data = await response.json();
         if (data.audioBase64 && this.audioCtx) {
-          if (this.audioCtx.state === 'suspended') {
-            await this.audioCtx.resume();
-          }
+          this.lastAudioBase64 = data.audioBase64;
 
-          // Decode base64 PCM 24kHz
           const binary = atob(data.audioBase64);
-          const len = Math.floor(binary.length / 2);
-          const pcm16 = new Int16Array(len);
-          for (let i = 0; i < len; i++) {
-            pcm16[i] = binary.charCodeAt(i * 2) | (binary.charCodeAt(i * 2 + 1) << 8);
-          }
-          const float32 = new Float32Array(len);
-          for (let i = 0; i < len; i++) {
-            float32[i] = pcm16[i] / 32768.0;
+          const bytes = new Uint8Array(binary.length);
+          for (let i = 0; i < binary.length; i++) {
+            bytes[i] = binary.charCodeAt(i);
           }
 
-          const buffer = this.audioCtx.createBuffer(1, len, 24000);
-          buffer.copyToChannel(float32, 0);
+          let buffer: AudioBuffer;
+          try {
+            buffer = await this.audioCtx.decodeAudioData(bytes.buffer.slice(0));
+          } catch {
+            // Fallback for raw PCM
+            const len = Math.floor(binary.length / 2);
+            const pcm16 = new Int16Array(len);
+            for (let i = 0; i < len; i++) {
+              pcm16[i] = binary.charCodeAt(i * 2) | (binary.charCodeAt(i * 2 + 1) << 8);
+            }
+            const float32 = new Float32Array(len);
+            for (let i = 0; i < len; i++) {
+              float32[i] = pcm16[i] / 32768.0;
+            }
+            buffer = this.audioCtx.createBuffer(1, len, 24000);
+            buffer.copyToChannel(float32, 0);
+          }
+
+          // Stop existing playback
+          if (this.currentSourceNode) {
+            try {
+              this.currentSourceNode.stop();
+            } catch {
+              // Ignore if already stopped
+            }
+          }
 
           const source = this.audioCtx.createBufferSource();
+          this.currentSourceNode = source;
           source.buffer = buffer;
 
           if (this.bassFilter) {
@@ -354,6 +402,7 @@ class SudaneseVoiceStudio {
 
           source.onended = () => {
             this.isPlaying = false;
+            this.currentSourceNode = null;
             this.playRadioCue('outro');
             if (options.onEnd) options.onEnd();
           };
@@ -373,6 +422,14 @@ class SudaneseVoiceStudio {
   public stop() {
     this.isPlaying = false;
     this.currentUtterance = null;
+    if (this.currentSourceNode) {
+      try {
+        this.currentSourceNode.stop();
+      } catch {
+        // Ignore
+      }
+      this.currentSourceNode = null;
+    }
     if (this.audioPlaybackElement) {
       this.audioPlaybackElement.pause();
       this.audioPlaybackElement = null;
@@ -398,12 +455,41 @@ class SudaneseVoiceStudio {
     return this.isPlaying;
   }
 
+  public getLastAudioBase64(): string | null {
+    return this.lastAudioBase64;
+  }
+
+  public downloadWavAudio(filename?: string): boolean {
+    if (!this.lastAudioBase64) return false;
+    try {
+      const actualName = filename || `bahrain_sudanese_commercial_${Date.now()}.wav`;
+      const byteCharacters = atob(this.lastAudioBase64);
+      const byteNumbers = new Array(byteCharacters.length);
+      for (let i = 0; i < byteCharacters.length; i++) {
+        byteNumbers[i] = byteCharacters.charCodeAt(i);
+      }
+      const byteArray = new Uint8Array(byteNumbers);
+      const blob = new Blob([byteArray], { type: 'audio/wav' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = actualName;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      return true;
+    } catch {
+      return false;
+    }
+  }
+
   /**
-   * Export synthesized speech and audio waveform into a real downloadable audio Blob (.wav)
+   * Export synthesized speech and audio waveform into a real downloadable audio Blob (.txt script & details)
    */
   public generateAudioDownloadBlob(text: string, title: string): { filename: string; scriptText: string } {
     const filename = `bahrain_sudanese_ad_${Date.now()}.txt`;
-    const scriptContent = `=== تسجيل إعلان حماسي بصوت رجل بالعامية السودانية ===\n\nالعنوان: ${title}\nالموضوع: اكتشف مملكة البحرين\nاللهجة: العامية السودانية الأصيلة (نبرة إذاعية حماسية)\nالمواصفات: صوت رجل نقي، طبقة جهورية، بدون موسيقى\n\nنص الإعلان:\n"${text}"\n\n=== تم الإنتاج عبر منصة اكتشف البحرين ===\n`;
+    const scriptContent = `=== تسجيل إعلان حماسي بصوت رجل بالعامية السودانية ===\n\nالعنوان: ${title}\nالموضوع: اكتشف مملكة البحرين\nاللهجة: العامية السودانية الأصيلة (نبرة إذاعية حماسية)\nالمواصفات: صوت رجل نقي، طبقة جهورية، بدون موسيقى\n\nنص الإعلان:\n"${text}"\n\n=== تم الإنتاج عبر استوديو اكتشف البحرين ===\nللتواصل والإعلانات: واتساب 00249919980435\n`;
 
     return {
       filename,

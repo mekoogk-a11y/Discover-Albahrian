@@ -17,7 +17,10 @@ import {
   Share2,
   BookmarkCheck,
   Zap,
-  Edit3
+  Edit3,
+  MessageCircle,
+  FileText,
+  Headphones
 } from 'lucide-react';
 import {
   sudaneseVoiceStudio,
@@ -41,6 +44,8 @@ export const SudaneseCommercialAudioSection: React.FC = () => {
   const [pitch, setPitch] = useState<number>(0.82); // 0.70 to 1.0 (masculine resonance)
   const [rate, setRate] = useState<number>(1.12); // 0.90 to 1.30 (commercial pace)
   const [energy, setEnergy] = useState<'high' | 'ultra' | 'balanced'>('high');
+  const [selectedVoice, setSelectedVoice] = useState<'Fenrir' | 'Charon' | 'Puck'>('Fenrir');
+  const [hasAudioWav, setHasAudioWav] = useState<boolean>(false);
 
   // Visualizer Canvas
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -122,16 +127,19 @@ export const SudaneseCommercialAudioSection: React.FC = () => {
       pitch,
       rate,
       energy,
+      voiceName: selectedVoice,
       onStart: () => {
         setIsPlaying(true);
         setIsPaused(false);
+        setHasAudioWav(!!sudaneseVoiceStudio.getLastAudioBase64());
       },
       onEnd: () => {
         setIsPlaying(false);
         setIsPaused(false);
+        setHasAudioWav(!!sudaneseVoiceStudio.getLastAudioBase64());
       }
     });
-  }, [currentSpeakingText, pitch, rate, energy, isPaused]);
+  }, [currentSpeakingText, pitch, rate, energy, selectedVoice, isPaused]);
 
   // Handle Pause
   const handlePause = () => {
@@ -170,6 +178,16 @@ export const SudaneseCommercialAudioSection: React.FC = () => {
     a.click();
     document.body.removeChild(a);
     URL.revokeObjectURL(url);
+  };
+
+  // Download Audio WAV
+  const handleDownloadWavAudio = () => {
+    const title = isCustomMode ? 'custom' : activeScript.id;
+    const filename = `bahrain_sudanese_${title}_${Date.now()}.wav`;
+    const downloaded = sudaneseVoiceStudio.downloadWavAudio(filename);
+    if (!downloaded) {
+      handleDownload();
+    }
   };
 
   // Quick Sudanese Catchphrase Play
@@ -299,7 +317,7 @@ export const SudaneseCommercialAudioSection: React.FC = () => {
                   <div className="flex items-center gap-2">
                     <button
                       onClick={handleCopyScript}
-                      className="inline-flex items-center gap-1 px-3 py-1 rounded-lg bg-white hover:bg-stone-100 text-xs font-medium text-stone-700 border border-stone-200 shadow-xs transition-colors"
+                      className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-white hover:bg-stone-100 text-xs font-medium text-stone-700 border border-stone-200 shadow-xs transition-colors cursor-pointer"
                       title="نسخ النص الإعلاني"
                     >
                       {copied ? <Check className="w-3.5 h-3.5 text-emerald-600" /> : <Copy className="w-3.5 h-3.5 text-stone-500" />}
@@ -307,12 +325,22 @@ export const SudaneseCommercialAudioSection: React.FC = () => {
                     </button>
                     <button
                       onClick={handleDownload}
-                      className="inline-flex items-center gap-1 px-3 py-1 rounded-lg bg-white hover:bg-stone-100 text-xs font-medium text-stone-700 border border-stone-200 shadow-xs transition-colors"
-                      title="تحميل الاسكربت"
+                      className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-white hover:bg-stone-100 text-xs font-medium text-stone-700 border border-stone-200 shadow-xs transition-colors cursor-pointer"
+                      title="تحميل الاسكربت النصي"
                     >
-                      <Download className="w-3.5 h-3.5 text-stone-500" />
+                      <FileText className="w-3.5 h-3.5 text-stone-500" />
                       <span>تحميل الاسكربت</span>
                     </button>
+                    {hasAudioWav && (
+                      <button
+                        onClick={handleDownloadWavAudio}
+                        className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-emerald-50 hover:bg-emerald-100 text-xs font-bold text-emerald-800 border border-emerald-300 shadow-xs transition-colors cursor-pointer"
+                        title="تحميل الملف الصوتي المسجل بصوت الرجل السوداني (WAV)"
+                      >
+                        <Download className="w-3.5 h-3.5 text-emerald-600" />
+                        <span>تحميل الصوت (WAV)</span>
+                      </button>
+                    )}
                   </div>
                 </div>
 
@@ -429,6 +457,34 @@ export const SudaneseCommercialAudioSection: React.FC = () => {
                   <span>ضبط مواصفات الصوت الرجالي</span>
                 </div>
 
+                {/* Voice Persona Selector */}
+                <div className="mb-4">
+                  <label className="block text-xs text-stone-700 font-bold mb-1.5">
+                    خامة الصوت الرجالي (AI Voice):
+                  </label>
+                  <div className="grid grid-cols-3 gap-1.5">
+                    {[
+                      { id: 'Fenrir', label: 'فينرير', desc: 'جهوري أصيل' },
+                      { id: 'Charon', label: 'شارون', desc: 'إذاعي رنان' },
+                      { id: 'Puck', label: 'باك', desc: 'شبابي نشط' },
+                    ].map((v) => (
+                      <button
+                        key={v.id}
+                        type="button"
+                        onClick={() => setSelectedVoice(v.id as 'Fenrir' | 'Charon' | 'Puck')}
+                        className={`p-2 rounded-xl text-center transition-all cursor-pointer ${
+                          selectedVoice === v.id
+                            ? 'bg-[#C8102E] text-white shadow-xs'
+                            : 'bg-white border border-stone-200 text-stone-700 hover:bg-stone-100'
+                        }`}
+                      >
+                        <div className="text-[11px] font-bold">{v.label}</div>
+                        <div className="text-[9px] opacity-80">{v.desc}</div>
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
                 {/* Pitch Slider */}
                 <div className="mb-4">
                   <div className="flex justify-between text-xs text-stone-700 font-medium mb-1.5">
@@ -481,7 +537,7 @@ export const SudaneseCommercialAudioSection: React.FC = () => {
                       <button
                         key={lvl}
                         onClick={() => setEnergy(lvl)}
-                        className={`py-1.5 rounded-lg text-xs font-bold transition-all ${
+                        className={`py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
                           energy === lvl
                             ? 'bg-[#C8102E] text-white shadow-xs'
                             : 'bg-white border border-stone-200 text-stone-700 hover:bg-stone-100'
@@ -522,6 +578,37 @@ export const SudaneseCommercialAudioSection: React.FC = () => {
                     </button>
                   ))}
                 </div>
+              </div>
+            </div>
+          </div>
+
+          {/* WhatsApp Custom Ad Production & Advertising Inquiry Banner */}
+          <div className="mt-10 bg-gradient-to-r from-stone-900 via-stone-850 to-stone-900 border border-stone-800 rounded-3xl p-6 sm:p-8 text-white relative overflow-hidden shadow-xl">
+            <div className="absolute top-0 left-0 w-80 h-80 bg-red-600/10 rounded-full blur-3xl pointer-events-none" />
+            <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-6">
+              <div className="text-right max-w-2xl">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/20 border border-emerald-500/30 text-emerald-400 text-xs font-bold mb-3">
+                  <MessageCircle className="w-3.5 h-3.5" />
+                  <span>إنتاج إعلاني احترافي بالعامية السودانية</span>
+                </div>
+                <h3 className="text-xl sm:text-2xl font-black text-white mb-2">
+                  داير إعلان صوتي حماسي خاص بمنتجك أو مشروعك؟
+                </h3>
+                <p className="text-stone-300 text-xs sm:text-sm leading-relaxed">
+                  نقدّم خدمة كتابة وإنتاج اسكربتات وتسجيلات إعلانية احترافية بنبرة سودانية حماسية تلفت الانتباه وتزيد المبيعات لمواقع التواصل والإذاعة.
+                </p>
+              </div>
+
+              <div className="flex flex-col sm:flex-row items-center gap-3 w-full md:w-auto">
+                <a
+                  href="https://wa.me/249919980435?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%D8%8C%20%D8%A3%D9%88%D8%AF%20%D8%B7%D9%84%D8%A8%20%D8%AA%D8%B3%D8%AC%D9%8A%D9%84%20%D8%B5%D9%88%D8%AA%20%D8%A5%D8%B9%D9%84%D8%A7%D9%86%D9%8A%20%D8%AD%D9%85%D8%A7%D8%B3%D9%8A%20%D8%A8%D8%A7%D9%84%D8%B9%D8%A7%D9%85%D9%8A%D8%A9%20%D8%A7%D9%84%D8%B3%D9%88%D8%AF%D8%A7%D9%86%D9%8A%D8%A9"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-gradient-to-r from-emerald-600 to-emerald-500 hover:from-emerald-500 hover:to-emerald-400 text-white font-bold text-sm flex items-center justify-center gap-2.5 shadow-lg shadow-emerald-600/30 transition-all cursor-pointer"
+                >
+                  <MessageCircle className="w-4 h-4 fill-current" />
+                  <span>تواصل عبر واتساب (00249919980435)</span>
+                </a>
               </div>
             </div>
           </div>
